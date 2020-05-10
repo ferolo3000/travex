@@ -26,6 +26,10 @@ div, p {
   color: $color-red;
 }
 
+.link {
+  cursor: pointer;
+}
+
 form {
   padding: $ruler;
   width: $ruler*20;

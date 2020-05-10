@@ -6,7 +6,7 @@ import './login.scss';
 class LoginWidget extends React.Component {
 
   render() {
-    return {
+    return (
       <div className="col-md-6">
         <form>
           <div className="text-center mt-4">
@@ -20,9 +20,9 @@ class LoginWidget extends React.Component {
           </label>
           <button className="red" type="button">Log In</button>
         </form>
-          <p className="text-center">Don't have an account? <a className="text-primary" onClick={this.props.toggle}>Sign up</a></p>
+          <p className="text-center">Don't have an account? <a className="text-primary link" onClick={this.props.toggle}>Sign up</a></p>
       </div>
-    }
+    )
   }
 
 }

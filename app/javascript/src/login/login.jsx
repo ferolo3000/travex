@@ -1,12 +1,24 @@
 // login.jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import LoginWidget from './loginWidget';
+import SignupWidget from './signupWidget';
 
 import './login.scss';
 
 class Login extends React.Component {
+  state = {
+    show_login: true,
+  }
+
+  toggle = () => {
+    this.setState({
+      show_login: !this.state.show_login,
+    })
+  }
+
   render() {
+      const { show_login } = this.state;
     return (
       <React.Fragment>
       <nav className="navbar navbar-light bg-light">
@@ -24,25 +36,7 @@ class Login extends React.Component {
               </p>
             </div>
           </div>
-
-          <div className="col-md-6">
-            <form>
-              <div className="text-center mt-4">
-                <h2 className="title mb-4">Sign up</h2>
-              </div>
-              <label className="mb-3">
-                <input type="text" placeholder="Email Address" />
-              </label>
-              <label className="mb-3">
-                <input type="text" placeholder="Username" />
-              </label>
-              <label className="mb-3">
-                <input type="password" placeholder="Password" />
-              </label>
-              <button className="red" type="button">Sign Up</button>
-            </form>
-              <p className="text-center">Already have an account? <a className="text-primary" onClick={this.props.toggle}>Log in</a></p>
-          </div>
+          {show_login ? <LoginWidget toggle={this.toggle} /> : <SignupWidget toggle={this.toggle} />}
         </div>
       </div>
       </React.Fragment>
