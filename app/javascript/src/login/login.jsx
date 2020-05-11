@@ -22,7 +22,7 @@ class Login extends React.Component {
     return (
       <React.Fragment>
       <nav className="navbar navbar-light bg-light">
-        <span className="navbar-brand mb-0 h1">travex</span>
+        <span className="navbar-brand mb-0 h1" id="brand">travex</span>
       </nav>
       <div className="container">
         <div className="row">

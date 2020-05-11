@@ -11,6 +11,7 @@ $color-red: #ff2e63;
 $color-bg: #EBECF0;
 $color-shadow: #BABECC;
 $color-white: #FFF;
+$color-purple: #512b58;
 
 body, p, input, select, textarea, button {
     letter-spacing: -0.2px;
@@ -20,6 +21,10 @@ body, p, input, select, textarea, button {
 div, p {
   color: $color-shadow;
   text-shadow: 1px 1px 1px $color-white;
+}
+
+#brand {
+  color: $color-purple;
 }
 
 .title {
@@ -87,10 +92,6 @@ button {
     box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
   }
 
-  .icon {
-    margin-right: $ruler/2;
-  }
-
   &.unit {
     border-radius: $ruler/2;
     line-height: 0;
@@ -102,9 +103,6 @@ button {
     margin: 0 $ruler/2;
     font-size: $ruler*1.2;
 
-    .icon {
-      margin-right: 0;
-    }
   }
 
   &.red {
