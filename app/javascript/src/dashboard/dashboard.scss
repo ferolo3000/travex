@@ -14,14 +14,14 @@ $color-purple: #512b58;
 
 .sidebar-container {
   position: fixed;
-  background: $color-purple;
-  color: $color-white;
+  background: $color-bg;
+  color: $color-red;
 }
 
 li a {
   padding: 10px 15px 10px 30px;
   display: block;
-  color: $color-white;
+  color: $color-red;
 }
 
 li a:active,
