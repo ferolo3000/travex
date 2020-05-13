@@ -12,35 +12,70 @@ $color-shadow: #BABECC;
 $color-white: #FFF;
 $color-purple: #512b58;
 
+#brand {
+  color: $color-purple;
+}
+
 .sidebar-container {
-  position: fixed;
   background: $color-bg;
   color: $color-red;
 }
 
-li a {
-  padding: 10px 15px 10px 30px;
+
+// #sidebar {
+//   position: fixed;
+// }
+
+.sidebar-navigation {
+  background: $color-bg;
+
+	ul {
+		text-align: left;
+		color: $color-white;
+
+		li a{
+			padding: 20px 0;
+			cursor: pointer;
+			color: $color-red;
+      display: block;
+
+			svg {
+				font-size: 20px;
+				transition: all ease 450ms;
+			}
+
+			&:hover {
+				color: $color-purple;
+			}
+
+      &:after {
+        backface-visibility: hidden;
+  border: 1px solid rgba(#fff, 0);
+  bottom: 0px;
+  content: " ";
   display: block;
-  color: $color-red;
+  margin: 0 auto;
+  position: relative;
+  transition: all 280ms ease-in-out;
+      }
+
+			&.active {
+				background-color: $color-white;
+
+				svg {
+					color: $color-white;
+				}
+			}
+		}
+	}
 }
 
-li a:active,
-li a:hover,
-li a:focus {
-  text-decoration: none;
-  outline: none;
-}
-
-.link:hover {
-  background-color: $color-red;
-}
-
-#sidebar {
-  position: fixed;
-}
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   #sidebar {
     position: relative;
+  }
+
+  #brand {
+    padding-top: 10px;
   }
 }
