@@ -14,8 +14,8 @@ users = User.create([
 
 expenses = Expense.create([
   {
-    start_date: '27-10-2018',
-    end_date: '30-10-2018',
+    date: '27-10-2018',
+    merchant: 'Hotel ABC',
     location: 'New York',
     category: 'Hotel',
     amount: 150,
@@ -25,8 +25,8 @@ expenses = Expense.create([
     user: users.first
   },
   {
-    start_date: '27-10-2018',
-    end_date: '27-10-2018',
+    date: '27-10-2018',
+    merchant: 'Restaurant ABC',
     location: 'New York',
     category: 'Food',
     amount: 12.50,
@@ -36,8 +36,8 @@ expenses = Expense.create([
     user: users.first
   },
   {
-    start_date: '30-10-2018',
-    end_date: '30-10-2018',
+    date: '30-10-2018',
+    merchant: 'Taxi Cop. ABC',
     location: 'New York',
     category: 'Transportation',
     amount: 7.50,

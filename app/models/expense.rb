@@ -7,17 +7,8 @@ class Expense < ApplicationRecord
   validates :category, presence: true, length: { maximum: 200 }
   validates :payment_method, presence: true, length: { maximum: 200 }
   validates :amount, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 99999 }
-  validates :start_date, presence: true
-  validates :end_date, presence: true
+  validates :date, presence: true
+  validates :merchant, presence: true
   validates :user, presence: true
 
-  before_validation :check_start_date_smaller_than_end_date
-
-  private
-
-  def check_start_date_smaller_than_end_date
-    if self.start_date > self.end_date
-      raise ArgumentError.new("start date cannot be larger than end date")
-    end
-  end
 end

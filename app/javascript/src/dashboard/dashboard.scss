@@ -17,6 +17,10 @@ $color-purple: #512b58;
   color: $color-purple;
 }
 
+.title {
+  color: $color-red;
+}
+
 // -------START css sidebar-------------
 
 .sidebar-container {
@@ -95,11 +99,11 @@ form {
   text-align: center;
 }
 
-button, input, textarea, select {
+.button-form, .input-form, textarea, select {
   border: 0;
   outline: 0;
-  font-size: $ruler;
-  border-radius: $ruler*20;
+  //font-size: $ruler;
+  border-radius: 5px;
   padding: $ruler;
   background-color:$color-bg;
   text-shadow: 1px 1px 0 $color-white;
@@ -116,9 +120,9 @@ label {
   opacity: 1; /* Firefox */
 }
 
-input, textarea, select {
+.input-form, textarea, select {
   margin-right: $ruler/2;
-  box-shadow:  inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
+  box-shadow:  inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
   width: 100%;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
@@ -130,7 +134,7 @@ input, textarea, select {
   }
 }
 
-button {
+.button-form {
   color:#61677C;
   font-weight: bold;
   box-shadow: -5px -5px 20px $color-white,  5px 5px 20px $color-shadow;
@@ -160,9 +164,17 @@ button {
   }
 
   &.red {
-    display: block;
-    width: 100%;
-    color:$color-red;
+    background-color: $color-red;
+    color: $color-white;
+    text-shadow: none;
+    border-radius: 5px;
+  }
+
+  &.purple {
+    background-color: $color-purple;
+    color: $color-white;
+    text-shadow: none;
+    border-radius: 5px;
   }
 }
 
@@ -177,4 +189,8 @@ button {
   }
 }
 
-// -------END css form-------------
+
+.show>.dropdown-menu {
+  display: block;
+  position: absolute;
+}

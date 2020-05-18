@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_083457) do
+ActiveRecord::Schema.define(version: 2020_05_13_082927) do
 
   create_table "expenses", force: :cascade do |t|
-    t.date "start_date"
-    t.date "end_date"
+    t.date "date"
+    t.string "merchant"
     t.string "location"
     t.string "category"
     t.integer "amount"
@@ -28,10 +28,10 @@ ActiveRecord::Schema.define(version: 2020_05_13_083457) do
   end
 
   create_table "sessions", force: :cascade do |t|
+    t.string "token"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.string "token"
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
