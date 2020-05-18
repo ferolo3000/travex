@@ -1,17 +1,18 @@
-body {
-  font-family: 'Jost', sans-serif;
-}
-
-h1, h2, h3, h4, h5, h5, h6 {
-  font-family: 'Raleway', sans-serif;
-}
-
 $ruler: 12px;
 $color-red: #ff2e63;
 $color-bg: #EBECF0;
 $color-shadow: #BABECC;
 $color-white: #FFF;
 $color-purple: #512b58;
+$color-black: #5f6769;
+
+body {
+  font-family: 'Jost', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h5, h6, th {
+  font-family: 'Raleway', sans-serif;
+}
 
 #brand {
   color: $color-purple;
@@ -193,4 +194,14 @@ label {
 .show>.dropdown-menu {
   display: block;
   position: absolute;
+}
+
+//-------START css report-----------
+
+th {
+  color: $color-purple;
+}
+
+td {
+  color: $color-black;
 }

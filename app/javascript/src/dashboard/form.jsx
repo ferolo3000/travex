@@ -39,20 +39,24 @@ class Form extends React.Component {
               </div>
             </div>
             <div className="form-row">
-              <div className="form-group col-md-6">
+              <div className="form-group col-md-5">
                 <label className="label">Location</label>
                 <input className="input-form" type="text" required/>
               </div>
-              <div className="form-group col-md-6">
+              <div className="form-group col-md-5">
                 <label className="label">Amount</label>
                 <input className="input-form" type="number" min={0} step={0.01} required/>
+              </div>
+              <div className="form-group col-md-2">
+                <label className="label">Split</label>
+                <input className="input-form" type="number" min={1}/>
               </div>
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label forhtml="categoryID">Category </label>
+                <label forhtml="categoryID">Category</label>
                 <select className="category-options" id="categoryID">
-                  <option>Select...</option>
+                  <option value="" disabled selected>Select...</option>
                   <option>Telephone & Internet</option>
                   <option>Meals & Entertainment</option>
                   <option>Transportation</option>
@@ -63,7 +67,7 @@ class Form extends React.Component {
               <div className="form-group col-md-6">
                 <label forhtml="paymentID">Payment Method</label>
                 <select className="pay-options" id="paymentID">
-                  <option>Select...</option>
+                  <option value="" disabled selected>Select...</option>
                   <option>Cash</option>
                   <option>Credit Card</option>
                   <option>Other</option>
@@ -74,7 +78,6 @@ class Form extends React.Component {
               <label forhtml="noteID">Note</label>
               <textarea className="text" id="noteID" rows="2"></textarea>
             </div>
-
           </form>
         </div>
         <div className="col-md-4">
