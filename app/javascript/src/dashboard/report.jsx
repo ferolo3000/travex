@@ -4,14 +4,49 @@ import './dashboard.scss';
 
 class Report extends React.Component {
 
+  constructor() {
+    super();
+
+    this.state = { checked: false };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange() {
+    this.setState({
+      checked: !this.state.checked
+    })
+  }
+
   render() {
+    const actions = this.state.checked
+      ? <div className="row">
+          <div className="form-group col-md-3">
+            <select className="category-options" id="categoryID">
+              <option value="" disabled selected>Actions</option>
+              <option>&#9940;  Delete</option>
+              <option>&#9989;  Edit</option>
+              <option>&#128209;  Export to PDF</option>
+              <option>&#128199;  View</option>
+            </select>
+          </div>
+          <div className="col-md-2">
+            <button className="btn btn-lg btn-primary action-btn">
+              <svg className="bi bi-check-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M15.354 2.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3-3a.5.5 0 11.708-.708L8 9.293l6.646-6.647a.5.5 0 01.708 0z" clipRule="evenodd"/>
+                <path fillRule="evenodd" d="M8 2.5A5.5 5.5 0 1013.5 8a.5.5 0 011 0 6.5 6.5 0 11-3.25-5.63.5.5 0 11-.5.865A5.472 5.472 0 008 2.5z" clipRule="evenodd"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      : null;
+
     return (
       <div>
         <div className="text-center mt-4">
           <h2 className="title mb-4">Reports</h2>
         </div>
 	      <div className="row">
-          <div className="form-group col-md-4">
+          <div className="form-group col-md-3">
             <label className="label">
               <svg className="bi bi-calendar mr-3 mb-1" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" d="M14 0H2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z" clipRule="evenodd"/>
@@ -28,7 +63,7 @@ class Report extends React.Component {
             </svg> Category
             </label>
             <select className="category-options" id="categoryID">
-              <option selected>All</option>
+              <option defaultValue>All</option>
               <option>Telephone & Internet</option>
               <option>Meals & Entertainment</option>
               <option>Transportation</option>
@@ -45,22 +80,22 @@ class Report extends React.Component {
               </svg> Payment Method
             </label>
             <select className="pay-options" id="payID">
-              <option selected>All</option>
+              <option defaultValue>All</option>
               <option>Cash</option>
               <option>Credit Card</option>
               <option>Other</option>
             </select>
           </div>
-        </div>
-        <div className="row">
-          <div className="form-group col-md-4">
-            <select className="category-options" id="categoryID">
-              <option value="" disabled selected>Actions</option>
-              <option>Delete</option>
-              <option>Edit</option>
-              <option>Export to PDF</option>
-            </select>
+          <div className="form-group col-md-1">
+            <button className="btn btn-lg btn-success filter-btn">
+              <svg className="bi bi-funnel" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M1.5 1.5A.5.5 0 012 1h12a.5.5 0 01.5.5v2a.5.5 0 01-.128.334L10 8.692V13.5a.5.5 0 01-.342.474l-3 1A.5.5 0 016 14.5V8.692L1.628 3.834A.5.5 0 011.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 017 8.5v5.306l2-.666V8.5a.5.5 0 01.128-.334L13.5 3.308V2h-11z" clipRule="evenodd"/>
+              </svg>
+            </button>
           </div>
+        </div>
+        <div>
+          { actions }
         </div>
         <div className="container mt-3">
           <table className="table table-hover">
@@ -78,7 +113,10 @@ class Report extends React.Component {
               <tr>
                 <td>
                   <label>
-                    <input data-index="0" name="btSelectItem" type="checkbox" value="0" />
+                    <input
+                      type="checkbox"
+                      checked={ this.state.checked }
+                      onChange={ this.handleChange } />
                   </label>
                 </td>
                 <td>27-10-2018</td>
@@ -86,18 +124,6 @@ class Report extends React.Component {
                 <td>London</td>
                 <td>134</td>
                 <td>Cash</td>
-              </tr>
-              <tr>
-                <td>
-                  <label>
-                    <input data-index="0" name="btSelectItem" type="checkbox" value="0" />
-                  </label>
-                </td>
-                <td>20-09-2019</td>
-                <td>Hotel</td>
-                <td>London</td>
-                <td>1.200</td>
-                <td>Credit Card</td>
               </tr>
             </tbody>
           </table>

@@ -81,6 +81,10 @@ h1, h2, h3, h4, h5, h5, h6, th {
   #brand {
     padding-top: 10px;
   }
+
+  .filter-btn {
+    margin-top: -10px !important;
+  }
 }
 
 
@@ -204,4 +208,21 @@ th {
 
 td {
   color: $color-black;
+}
+
+.filter-btn {
+  margin-top: 35px;
+  font-weight: bold;
+  box-shadow: -5px -5px 20px $color-white,  5px 5px 20px $color-shadow;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.action-btn {
+  font-weight: bold;
+  box-shadow: -5px -5px 20px $color-white,  5px 5px 20px $color-shadow;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-weight: 600;
 }
