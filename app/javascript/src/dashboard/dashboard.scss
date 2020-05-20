@@ -1,10 +1,12 @@
 $ruler: 12px;
-$color-red: #ff2e63;
+$color-red: #ef5675;
 $color-bg: #EBECF0;
 $color-shadow: #BABECC;
 $color-white: #FFF;
-$color-purple: #512b58;
+$color-purple: #7a5195;
 $color-black: #5f6769;
+$color-blue: #003f5c;
+$color-orange: #ffa600;
 
 body {
   font-family: 'Jost', sans-serif;
@@ -15,7 +17,7 @@ h1, h2, h3, h4, h5, h5, h6, th {
 }
 
 #brand {
-  color: $color-purple;
+  color: $color-white;
 }
 
 .title {
@@ -25,12 +27,11 @@ h1, h2, h3, h4, h5, h5, h6, th {
 // -------START css sidebar-------------
 
 .sidebar-container {
-  background: $color-bg;
-  color: $color-red;
+  background: $color-blue;
 }
 
 .sidebar-navigation {
-  background: $color-bg;
+  background: $color-blue;
 
 	ul {
 		text-align: left;
@@ -39,7 +40,7 @@ h1, h2, h3, h4, h5, h5, h6, th {
 		li a{
 			padding: 20px 0;
 			cursor: pointer;
-			color: $color-red;
+			color: $color-bg;
       display: block;
 
 			svg {
@@ -48,7 +49,7 @@ h1, h2, h3, h4, h5, h5, h6, th {
 			}
 
 			&:hover {
-				color: $color-purple;
+				color: $color-red;
 			}
 
       &:after {
@@ -73,6 +74,8 @@ h1, h2, h3, h4, h5, h5, h6, th {
 	}
 }
 
+//------------MEDIA---------
+
 @media only screen and (max-width: 768px) {
   #sidebar {
     position: relative;
@@ -91,7 +94,7 @@ h1, h2, h3, h4, h5, h5, h6, th {
 // -------START css form-------------
 div, p {
   color: $color-shadow;
-  text-shadow: 1px 1px 1px $color-white;
+  // text-shadow: 1px 1px 1px $color-white;
 }
 
 form {
@@ -118,11 +121,6 @@ label {
   display: block;
   margin-bottom: $ruler*1.5;
   width: 100%;
-}
-
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: $color-shadow;
-  opacity: 1; /* Firefox */
 }
 
 .input-form, textarea, select {
@@ -175,8 +173,8 @@ label {
     border-radius: 5px;
   }
 
-  &.purple {
-    background-color: $color-purple;
+  &.orange {
+    background-color: $color-orange;
     color: $color-white;
     text-shadow: none;
     border-radius: 5px;
@@ -194,12 +192,6 @@ label {
   }
 }
 
-
-.show>.dropdown-menu {
-  display: block;
-  position: absolute;
-}
-
 //-------START css report-----------
 
 th {
@@ -210,21 +202,41 @@ td {
   color: $color-black;
 }
 
-.filter-btn {
+#filter-btn {
+  background-color: $color-orange;
+  color: $color-white;
   margin-top: 35px;
   font-weight: bold;
   box-shadow: -5px -5px 20px $color-white,  5px 5px 20px $color-shadow;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   font-weight: 600;
+
+  &:hover {
+    box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+  }
 }
 
-.action-btn {
+#action-btn {
+  background-color: $color-red;
+  color: $color-white;
   font-weight: bold;
   box-shadow: -5px -5px 20px $color-white,  5px 5px 20px $color-shadow;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   font-weight: 600;
+
+  &:hover {
+    box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+  }
 }
 
 
@@ -267,16 +279,16 @@ td {
 }
 
 .c-dashboardInfo:nth-child(1) .wrap:after {
-  background: linear-gradient(82.59deg, #00c48c 0%, #00a173 100%);
+  background: linear-gradient(82.59deg, $color-red 0%, $color-purple 100%);
 }
 .c-dashboardInfo:nth-child(2) .wrap:after {
-  background: linear-gradient(81.67deg, #0084f4 0%, #1a4da2 100%);
+  background: linear-gradient(81.67deg, $color-purple 0%, $color-red 100%);
 }
 .c-dashboardInfo:nth-child(3) .wrap:after {
-  background: linear-gradient(69.83deg, #0084f4 0%, #00c48c 100%);
+  background: linear-gradient(69.83deg, $color-red 0%, $color-orange 100%);
 }
 .c-dashboardInfo:nth-child(4) .wrap:after {
-  background: linear-gradient(81.67deg, #ff647c 0%, #1f5dc5 100%);
+  background: linear-gradient(81.67deg, $color-orange 0%, $color-red 100%);
 }
 .c-dashboardInfo__title svg {
   color: #d7d7d7;
@@ -291,4 +303,18 @@ td {
   transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   user-select: none;
   flex-shrink: 0;
+}
+
+
+//-------START css information-----------
+.card5 {
+   border-radius: 10px;
+   border: 0;
+   border-radius: border-radius 0 border-radius 0;
+   box-shadow: 0px 5px 10px -5px rgba(0,0,0,0.75);
+   .card-img {
+      border-radius: border-radius 0 0 0;
+      height: 100%;
+      object-fit: cover;
+   }
 }

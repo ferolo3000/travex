@@ -30,7 +30,7 @@ class Report extends React.Component {
             </select>
           </div>
           <div className="col-md-2">
-            <button className="btn btn-lg btn-primary action-btn">
+            <button id="action-btn" className="btn btn-lg">
               <svg className="bi bi-check-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" d="M15.354 2.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3-3a.5.5 0 11.708-.708L8 9.293l6.646-6.647a.5.5 0 01.708 0z" clipRule="evenodd"/>
                 <path fillRule="evenodd" d="M8 2.5A5.5 5.5 0 1013.5 8a.5.5 0 011 0 6.5 6.5 0 11-3.25-5.63.5.5 0 11-.5.865A5.472 5.472 0 008 2.5z" clipRule="evenodd"/>
@@ -42,8 +42,8 @@ class Report extends React.Component {
 
     return (
       <div>
-        <div className="text-center mt-4">
-          <h2 className="title mb-4">Reports</h2>
+        <div className="text-center mt-3">
+          <h2 className="title mb-2">Reports</h2>
         </div>
 	      <div className="row">
           <div className="form-group col-md-3">
@@ -87,7 +87,7 @@ class Report extends React.Component {
             </select>
           </div>
           <div className="form-group col-md-1">
-            <button className="btn btn-lg btn-success filter-btn">
+            <button id="filter-btn" className="btn btn-lg">
               <svg className="bi bi-funnel" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" d="M1.5 1.5A.5.5 0 012 1h12a.5.5 0 01.5.5v2a.5.5 0 01-.128.334L10 8.692V13.5a.5.5 0 01-.342.474l-3 1A.5.5 0 016 14.5V8.692L1.628 3.834A.5.5 0 011.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 017 8.5v5.306l2-.666V8.5a.5.5 0 01.128-.334L13.5 3.308V2h-11z" clipRule="evenodd"/>
               </svg>

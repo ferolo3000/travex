@@ -22,8 +22,8 @@ class Form extends React.Component {
   render() {
     return (
     <div className="container">
-      <div className="text-center mt-4">
-        <h2 className="title mb-4">New Expense</h2>
+      <div className="text-center mt-3">
+        <h2 className="title mb-2">New Expense</h2>
       </div>
       <div className="row">
         <div className="col-md-8">
@@ -95,8 +95,8 @@ class Form extends React.Component {
         </div>
       </div>
       <div className="text-center">
-        <button className="button-form red mr-5" type="button">Create</button>
-        <button className="button-form purple" type="button">Cancel</button>
+        <button className="button-form orange mr-5" type="button">Create</button>
+        <button className="button-form red" type="button">Cancel</button>
       </div>
     </div>
     )

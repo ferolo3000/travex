@@ -9,8 +9,8 @@ class Stats extends React.Component {
   render() {
     return (
       <div className="container">
-        <div className="text-center mt-4">
-          <h2 className="title mb-4">Statistics</h2>
+        <div className="text-center mt-3">
+          <h2 className="title mb-2">Statistics</h2>
         </div>
         <div id="root">
           <div className="container">
