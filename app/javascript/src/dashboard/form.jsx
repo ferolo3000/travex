@@ -30,7 +30,7 @@ class Form extends React.Component {
           <form>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label className="label">Date</label>
+                <label className="label">Expense Date</label>
                 <input className="input-form" type="date" required/>
               </div>
               <div className="form-group col-md-6">

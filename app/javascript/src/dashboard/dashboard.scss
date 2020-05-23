@@ -254,15 +254,15 @@ td {
   padding: 40px 25px 20px;
   height: 100%;
 }
-.c-dashboardInfo__title,
-.c-dashboardInfo__subInfo {
+.stats-title,
+.stats-subInfo {
   color: #6c6c6c;
   font-size: 1.18em;
 }
 .c-dashboardInfo span {
   display: block;
 }
-.c-dashboardInfo__count {
+.stats-count {
   font-weight: 600;
   font-size: 2.5em;
   line-height: 64px;
@@ -290,31 +290,56 @@ td {
 .c-dashboardInfo:nth-child(4) .wrap:after {
   background: linear-gradient(81.67deg, $color-orange 0%, $color-red 100%);
 }
-.c-dashboardInfo__title svg {
-  color: #d7d7d7;
-  margin-left: 5px;
-}
-.MuiSvgIcon-root-19 {
-  fill: currentColor;
-  width: 1em;
-  height: 1em;
-  display: inline-block;
-  font-size: 24px;
-  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  user-select: none;
-  flex-shrink: 0;
-}
-
 
 //-------START css information-----------
-.card5 {
+.card-info {
    border-radius: 10px;
    border: 0;
-   border-radius: border-radius 0 border-radius 0;
    box-shadow: 0px 5px 10px -5px rgba(0,0,0,0.75);
+   transition: all 150ms ease-in-out;
    .card-img {
-      border-radius: border-radius 0 0 0;
       height: 100%;
       object-fit: cover;
    }
+   &:hover {
+    top: -3px;
+   	left: -3px;
+    box-shadow: 3px 3px 15px 0px rgba(82, 82, 82, 0.85);
+   }
+   &:active {
+    top: 2px;
+   	left: 2px;
+   	box-shadow: inset 0 0 10px rgba(82, 82, 82, 0.85);
+   }
+}
+
+
+//-------START css standard-----------
+#expense-link, #stats-link, #report-link {
+  color: $color-purple;
+  text-decoration: none;
+}
+
+.card-dashboard {
+  box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.1);
+  &:hover {
+   top: -3px;
+   left: -3px;
+   box-shadow: 3px 3px 15px 0px rgba(82, 82, 82, 0.85);
+   background-color: $color-red;
+  }
+  &:active {
+   top: 2px;
+   left: 2px;
+   box-shadow: inset 0 0 10px rgba(82, 82, 82, 0.85);
+  }
+}
+
+.card-summary {
+  box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-count {
+  font-size: 50px;
+  color: $color-orange;
 }

@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
       case 'report': return <Report />
       case 'standard': return <Standard/>
       case 'information': return <Information/>
-      default: return <h2 className="text-center">Welcome to Dashboard</h2>
+      default: return <Standard/>
     }
   }
 
