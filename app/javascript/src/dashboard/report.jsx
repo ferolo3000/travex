@@ -98,35 +98,37 @@ class Report extends React.Component {
           { actions }
         </div>
         <div className="container mt-3">
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Date</th>
-                <th scope="col">Category</th>
-                <th scope="col">Location</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Payment Method</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={ this.state.checked }
-                      onChange={ this.handleChange } />
-                  </label>
-                </td>
-                <td>27-10-2018</td>
-                <td>Transportation</td>
-                <td>London</td>
-                <td>134</td>
-                <td>Cash</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="table-responsive">
+            <table className="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Payment Method</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={ this.state.checked }
+                        onChange={ this.handleChange } />
+                    </label>
+                  </td>
+                  <td>27-10-2018</td>
+                  <td>Transportation</td>
+                  <td>London</td>
+                  <td>134</td>
+                  <td>Cash</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     )

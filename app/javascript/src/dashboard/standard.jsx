@@ -58,15 +58,15 @@ class Standard extends React.Component {
         <div class="card card-summary mt-5">
           <div class="card-header">Summary</div>
             <div className="row">
-              <div class="col-4 card-body  text-center">
+              <div class="col-md-4 card-body  text-center">
                 <p class="card-count">1</p>
                 <p class="card-text">EXPENSES</p>
               </div>
-              <div class="col-4 card-body  text-center">
+              <div class="col-md-4 card-body  text-center">
                 <p class="card-count">$2.500</p>
                 <p class="card-text">SPENT</p>
               </div>
-              <div class="col-4 card-body  text-center">
+              <div class="col-md-4 card-body  text-center">
                 <p class="card-count">3</p>
                 <p class="card-text">LOCATIONS</p>
               </div>
