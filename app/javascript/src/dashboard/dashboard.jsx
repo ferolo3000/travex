@@ -24,8 +24,8 @@ class Dashboard extends React.Component {
       case 'form': return <Form />
       case 'stats' : return <Stats />
       case 'report': return <Report />
-      case 'standard': return <Standard/>
-      default: return <Form/>
+      case 'standard': return <Standard />
+      default: return <Standard />
     }
   }
 
