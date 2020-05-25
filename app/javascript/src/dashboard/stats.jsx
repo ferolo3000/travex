@@ -1,6 +1,4 @@
 import React, { PureComponent } from 'react';
-import BarGraph from "./charts/bargraph"
-import PieGraph from "./charts/piegraph"
 
 import './dashboard.scss';
 
@@ -8,45 +6,60 @@ class Stats extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="text-center mt-3">
-          <h2 className="title mb-2">Statistics</h2>
-        </div>
-        <div className="cards-stats">
-          <div className="container">
-            <div className="row align-items-stretch">
-              <div className="c-dashboardInfo col-lg-3 col-md-6">
-                <div className="wrap">
-                  <h4 className="heading hind-font medium-font-weight stats-title">Portfolio Balance</h4><span className="hind-font caption-12 stats-count">$10,500</span>
-                </div>
-              </div>
-              <div className="c-dashboardInfo col-lg-3 col-md-6">
-                <div className="wrap">
-                  <h4 className="heading hind-font medium-font-weight stats-title">Some Data</h4><span className="hind-font caption-12 stats-count">$500</span><span
-                    className="hind-font caption-12 stats-subInfo">Last month: $30</span>
-                </div>
-              </div>
-              <div className="c-dashboardInfo col-lg-3 col-md-6">
-                <div className="wrap">
-                  <h4 className="heading hind-font medium-font-weight stats-title">Some Data</h4><span className="hind-font caption-12 stats-count">$5000</span>
-                </div>
-              </div>
-              <div className="c-dashboardInfo col-lg-3 col-md-6">
-                <div className="wrap">
-                  <h4 className="heading hind-font medium-font-weight stats-title">Some Data</h4><span className="hind-font caption-12 stats-count">6,40%</span>
+      <div className="card card-summary mt-5">
+        <div className="card-header">
+          <div className="row">
+            <div className="col-sm-6">
+              Expense Summary
+            </div>
+            <div className="col-sm-6">
+              <div className="input-group">
+                <input type="text" className="form-control" placeholder="Search Location..." aria-describedby="basic-addon2" />
+                <div className="input-group-append">
+                  <button className="btn btn-outline-secondary" type="button">Go</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-md-6 mt-4">
-            <h4 className="text-center">Chart Title</h4>
-            <BarGraph />
+        <div className="row p-1">
+          <div className="col-sm-12">
+            <div className="row">
+              <div className="col-sm-4 card-body  text-center">
+                <p className="card-count">$3.000</p>
+                <img src="https://img.icons8.com/fluent/48/000000/purchase-order.png" />
+                <p className="category-txt">All Expenses</p>
+              </div>
+              <div className="col-sm-4 card-body  text-center">
+                <p className="card-count">$1.200</p>
+                <img src="https://img.icons8.com/emoji/48/000000/airplane-emoji.png" />
+                <p className="category-txt">Air Travel</p>
+              </div>
+              <div className="col-sm-4 card-body  text-center">
+                <p className="card-count">$1.000</p>
+                <img src="https://img.icons8.com/emoji/48/000000/hotel-emoji.png" />
+                <p className="category-txt">Lodging</p>
+              </div>
+            </div>
           </div>
-          <div className="col-md-6 mt-4">
-            <h4 className="text-center">Chart Title</h4>
-            <PieGraph />
+          <div className="col-sm-12">
+            <div className="row">
+              <div className="col-sm-4 card-body  text-center">
+                <p className="card-count">$500</p>
+                <img src="https://img.icons8.com/emoji/48/000000/fork-and-knife-with-plate-emoji.png" />
+                <p className="category-txt">Meals & Entertainment</p>
+              </div>
+              <div className="col-sm-4 card-body  text-center">
+                <p className="card-count">$100</p>
+                <img src="https://img.icons8.com/emoji/48/000000/mobile-phone-with-arrow.png" />
+                <p className="category-txt">Phone & Internet</p>
+              </div>
+              <div className="col-sm-4 card-body  text-center">
+                <p className="card-count">$200</p>
+                <img src="https://img.icons8.com/emoji/48/000000/oncoming-taxi.png" />
+                <p className="category-txt">Transportation</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
