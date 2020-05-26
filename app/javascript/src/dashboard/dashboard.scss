@@ -4,7 +4,7 @@ $color-bg: #EBECF0;
 $color-shadow: #BABECC;
 $color-white: #FFF;
 $color-purple: #7a5195;
-$color-black: #5f6769;
+$color-black: #393e46;
 $color-blue: #003f5c;
 $color-orange: #ffa600;
 
@@ -34,10 +34,12 @@ h1, h2, h3, h4, h5, h5, h6, th {
 
 .sidebar-container {
   background: $color-blue;
+  position: fixed;
 }
 
 .sidebar-navigation {
   background: $color-blue;
+  position: fixed;
 
 	ul {
 		text-align: left;
@@ -82,7 +84,7 @@ h1, h2, h3, h4, h5, h5, h6, th {
 
 //------------MEDIA---------
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 764px) {
   #sidebar {
     position: relative;
   }
@@ -96,18 +98,35 @@ h1, h2, h3, h4, h5, h5, h6, th {
   }
 }
 
+@media only screen
+  and (min-device-width: 765px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+  .sidebar-navigation {
+    background: none;
+    position: fixed;
+  }
+
+}
+
 @media only screen and (max-width: 1024px) {
+
 
   #filter-btn, #add-btn {
     margin-top: 2rem;
   }
 }
 
+.table-responsive .table {
+    max-width: none;
+}
+
 
 // -------START css form-------------
 div, p {
   color: $color-shadow;
-  // text-shadow: 1px 1px 1px $color-white;
 }
 
 form {
@@ -127,7 +146,7 @@ form {
   border-radius: 5px;
   padding: $ruler;
   background-color:$color-bg;
-  text-shadow: 1px 1px 0 $color-white;
+  // text-shadow: 1px 1px 0 $color-white;
 }
 
 label {
@@ -140,6 +159,7 @@ label {
   margin-right: $ruler/2;
   box-shadow:  inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
   width: 100%;
+  color: $color-black;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
   appearance: none;

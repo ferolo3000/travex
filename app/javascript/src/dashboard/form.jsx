@@ -26,7 +26,7 @@ class Form extends React.Component {
         <h2 className="title mb-2">New Expense</h2>
       </div>
       <div className="row">
-        <div className="col-md-8">
+        <div className="col-lg-8 col-md-12">
           <form>
             <div className="form-row">
               <div className="form-group col-md-6">
@@ -56,7 +56,7 @@ class Form extends React.Component {
               <div className="form-group col-md-6">
                 <label forhtml="categoryID">Category</label>
                 <select className="category-options" id="categoryID">
-                  <option value="" disabled selected>Select...</option>
+                  <option disabled selected>Select...</option>
                   <option>✈  Air Travel</option>
                   <option>🏨  Lodging</option>
                   <option>🍽  Meals & Entertainment</option>
@@ -68,7 +68,7 @@ class Form extends React.Component {
               <div className="form-group col-md-6">
                 <label forhtml="paymentID">Payment Method</label>
                 <select className="pay-options" id="paymentID">
-                  <option value="" disabled selected>Select...</option>
+                  <option disabled selected>Select...</option>
                   <option>💵  Cash</option>
                   <option>💳  Credit Card</option>
                   <option>💰  Other Payment Method</option>
@@ -81,7 +81,7 @@ class Form extends React.Component {
             </div>
           </form>
         </div>
-        <div className="col-md-4">
+        <div className="col-lg-4  col-md-12">
           <div className="card mt-3 mb-3">
             <div className="card-body">
               <h3>Receipt</h3>

@@ -25,7 +25,7 @@ class Dashboard extends React.Component {
       case 'stats' : return <Stats />
       case 'report': return <Report />
       case 'standard': return <Standard />
-      default: return <Standard />
+      default: return <Report />
     }
   }
 
@@ -69,9 +69,9 @@ class Dashboard extends React.Component {
               </nav>
           </aside>
           <main className="col py-3 flex-grow-1">
-            <div className="container-fluid">
+
               {this._renderSubComp()}
-            </div>
+
           </main>
       </div>
     </div>
