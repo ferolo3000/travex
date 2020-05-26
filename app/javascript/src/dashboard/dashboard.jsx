@@ -25,7 +25,7 @@ class Dashboard extends React.Component {
       case 'stats' : return <Stats />
       case 'report': return <Report />
       case 'standard': return <Standard />
-      default: return <Report />
+      default: return <Standard />
     }
   }
 

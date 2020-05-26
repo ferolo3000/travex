@@ -47,17 +47,45 @@ class Standard extends React.Component {
         <div className="card card-summary mt-5">
           <div className="card-header">Recent Expenses</div>
           <div className="table-responsive p-2">
-            <table className="table table-hover">
+            <table className="rtable rtable--flip table table-hover">
               <thead>
                 <tr>
                   <th scope="col">Date</th>
                   <th scope="col">Category</th>
                   <th scope="col">Location</th>
                   <th scope="col">Amount</th>
-                  <th scope="col">Payment Method</th>
+                  <th scope="col">Payment</th>
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <td>27-10-2018</td>
+                  <td>Transportation</td>
+                  <td>London</td>
+                  <td>134</td>
+                  <td>Cash</td>
+                </tr>
+                <tr>
+                  <td>27-10-2018</td>
+                  <td>Transportation</td>
+                  <td>London</td>
+                  <td>134</td>
+                  <td>Cash</td>
+                </tr>
+                <tr>
+                  <td>27-10-2018</td>
+                  <td>Transportation</td>
+                  <td>London</td>
+                  <td>134</td>
+                  <td>Cash</td>
+                </tr>
+                <tr>
+                  <td>27-10-2018</td>
+                  <td>Transportation</td>
+                  <td>London</td>
+                  <td>134</td>
+                  <td>Cash</td>
+                </tr>
                 <tr>
                   <td>27-10-2018</td>
                   <td>Transportation</td>

@@ -113,7 +113,7 @@ class Report extends React.Component {
             {actions}
         </div>
         <div className="card card-summary mt-2">
-          <div className="card-header">Recent Expenses</div>
+          <div className="card-header">Expenses</div>
           <div className="table-responsive-sm">
             <table className="table table-hover w-100 d-block d-md-table">
               <thead>

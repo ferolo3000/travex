@@ -13,7 +13,7 @@ class Stats extends React.Component {
               Expense Summary
             </div>
             <div className="col-sm-6">
-              <div className="input-group">
+              <div className="input-group search-form">
                 <input type="text" className="form-control" placeholder="Search Location..." aria-describedby="basic-addon2" />
                 <div className="input-group-append">
                   <button className="btn btn-outline-secondary" type="button">Go</button>
