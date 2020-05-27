@@ -3,12 +3,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import LoginWidget from './loginWidget';
 import SignupWidget from './signupWidget';
+import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 import './login.scss';
 
 class Login extends React.Component {
   state = {
+    authenticated: false,
     show_login: true,
+  }
+
+  componentDidMount() {
+    fetch('/api/authenticated')
+      .then(handleErrors)
+      .then(data => {
+        this.setState({
+          authenticated: data.authenticated,
+        })
+      })
   }
 
   toggle = () => {
@@ -26,7 +38,7 @@ class Login extends React.Component {
       </nav>
       <div className="container">
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-lg-6 col-md-12">
             <div>
               <h2 className="mt-5 title">This is a title</h2>
             </div>

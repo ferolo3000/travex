@@ -2,6 +2,17 @@ Rails.application.routes.draw do
   root to: "static_pages#home"
 
   get '/dashboard'               => 'static_pages#dashboard'
+  get '/login' => 'static_pages#login'
+
+  namespace :api do
+
+    resources :users, only: [:create]
+    resources :sessions, only: [:create, :destroy]
+    resources :expenses, only: [:index,:create, :show]
+
+    post '/expenses'            => 'expenses#create'
+    get '/authenticated' => 'sessions#authenticated'
+  end
 
   # USERS
   post '/users' => 'users#create'

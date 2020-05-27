@@ -9,7 +9,6 @@
 users = User.create([
   { username: 'Tess', email: 'Tess@test.com', password: 'password' },
   { username: 'Marcus', email: 'Marcus@test.com', password: 'password' },
-  { username: 'Carl', email: 'carl@test.com', password: 'password' },
 ])
 
 expenses = Expense.create([
@@ -17,8 +16,9 @@ expenses = Expense.create([
     date: '27-10-2018',
     merchant: 'Hotel ABC',
     location: 'New York',
-    category: 'Hotel',
+    category: 'Lodging',
     amount: 150,
+    split: 2,
     payment_method: 'Credit Card',
     note: 'Hotel for Reactjs Conference in New York',
     image_url: 'https://ferolobucket.s3.amazonaws.com/hotel.png',
@@ -28,8 +28,9 @@ expenses = Expense.create([
     date: '27-10-2018',
     merchant: 'Restaurant ABC',
     location: 'New York',
-    category: 'Food',
+    category: 'Meals & Entertainment',
     amount: 12.50,
+    split: 1,
     payment_method: 'Cash',
     note: 'Restaurant close to the hotel',
     image_url: 'https://ferolobucket.s3.amazonaws.com/restaurant.png',
@@ -41,7 +42,8 @@ expenses = Expense.create([
     location: 'New York',
     category: 'Transportation',
     amount: 7.50,
-    payment_method: 'Cash',
+    split: 1,
+    payment_method: 'Other Payment Method',
     note: 'Taxi to the airport',
     image_url: 'https://ferolobucket.s3.amazonaws.com/taxi.png',
     user: users.first

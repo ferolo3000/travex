@@ -6,6 +6,7 @@ class CreateExpenses < ActiveRecord::Migration[5.2]
       t.string :location
       t.string :category
       t.integer :amount
+      t.integer :split
       t.string :payment_method
       t.string :note
       t.string :image_url
