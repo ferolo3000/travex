@@ -29,7 +29,7 @@ expenses = Expense.create([
     merchant: 'Restaurant ABC',
     location: 'New York',
     category: 'Meals & Entertainment',
-    amount: 12.50,
+    amount: 12,
     split: 1,
     payment_method: 'Cash',
     note: 'Restaurant close to the hotel',
@@ -41,11 +41,11 @@ expenses = Expense.create([
     merchant: 'Taxi Cop. ABC',
     location: 'New York',
     category: 'Transportation',
-    amount: 7.50,
+    amount: 7,
     split: 1,
     payment_method: 'Other Payment Method',
     note: 'Taxi to the airport',
     image_url: 'https://ferolobucket.s3.amazonaws.com/taxi.png',
-    user: users.first
+    user: users.second
   },
 ])

@@ -26,7 +26,7 @@ class LoginWidget extends React.Component {
   event.preventDefault();
   const { username, password } = this.state;
 
-  fetch(`/api/sessions`, safeCredentials({
+  fetch('/api/sessions', safeCredentials({
     method: 'POST',
     body: JSON.stringify({
       user: {
@@ -36,10 +36,18 @@ class LoginWidget extends React.Component {
     })
   }))
   .then(handleErrors)
-  .then(res => {
-    console.log(res);
-      window.location.replace("/dashboard");
+  .then(data => {
+    if (data.success) {
+      window.location = "/dashboard";
+    }
+    console.log(data);
   })
+  .catch(error => {
+    this.setState({
+      error: 'Could not log in.',
+    })
+  })
+
 }
 
   render() {

@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Standard from "./standard"
-import Form from "./form"
-import Stats from "./stats"
 import Report from "./report"
 
 import './dashboard.scss';
@@ -21,11 +19,9 @@ class Dashboard extends React.Component {
   }
   _renderSubComp(){
     switch(this.state.render){
-      case 'form': return <Form />
-      case 'stats' : return <Stats />
       case 'report': return <Report />
       case 'standard': return <Standard />
-      default: return <Form />
+      default: return <Standard />
     }
   }
 

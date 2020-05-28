@@ -1,5 +1,6 @@
 import React from "react";
 import Stats from "./stats";
+import Report from "./report";
 
 import './dashboard.scss';
 
@@ -15,7 +16,7 @@ class Standard extends React.Component {
           <div className="col-sm-6 text-center mt-3">
             <div className="card card-dashboard">
               <div className="card-body">
-                <a href="#" id="expense-link">
+                <a href="/form" id="expense-link">
                   <svg className="bi bi-plus-circle" width="4em" height="4em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z" />
                     <path fillRule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z" />

@@ -1,7 +1,6 @@
 import React, {useCallback} from 'react'
-import {useDropzone} from 'react-dropzone'
 
-import './dashboard.scss';
+import './form.scss';
 
 class Form extends React.Component {
   constructor(props){
@@ -96,8 +95,8 @@ class Form extends React.Component {
         </div>
       </div>
       <div className="text-center">
-        <button className="button-form orange mr-5" type="button">Create</button>
-        <button className="button-form red" type="button">Cancel</button>
+        <button className="button-form green mr-5" type="button">Create</button>
+        <button onClick={() => {window.location.href='/dashboard'}} className="button-form red" type="button">Cancel</button>
       </div>
     </div>
     )
