@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_082927) do
     t.string "merchant"
     t.string "location"
     t.string "category"
-    t.integer "amount"
+    t.float "amount"
     t.integer "split"
     t.string "payment_method"
     t.string "note"

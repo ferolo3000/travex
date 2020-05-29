@@ -14,16 +14,9 @@ module Api
     end
 
     def index
-      @expenses = Expense.where(user_id: params[:user_id])
-      return render json: { error: 'not_found' }, status: :not_found if !@expenses
+      @expenses = Expense.all
+
       render 'api/expenses/index', status: :ok
-    end
-
-    def show
-      @expense = Expense.find_by(id: params[:id])
-      return render json: { error: 'not_found' }, status: :not_found if !@expense
-
-      render 'api/expenses/show', status: :ok
     end
 
 

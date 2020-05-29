@@ -1,7 +1,7 @@
 import React from "react";
 import Receipt from "./receipt";
 
-import './dashboard.scss';
+import './report.scss';
 
 class Report extends React.Component {
 

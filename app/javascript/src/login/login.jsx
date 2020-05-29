@@ -1,9 +1,8 @@
 // login.jsx
 import React from 'react';
-import ReactDOM from 'react-dom';
 import LoginWidget from './loginWidget';
 import SignupWidget from './signupWidget';
-import { safeCredentials, handleErrors } from '@utils/fetchHelper';
+import { handleErrors } from '@utils/fetchHelper';
 
 import './login.scss';
 

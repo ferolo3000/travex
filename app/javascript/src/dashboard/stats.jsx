@@ -3,6 +3,18 @@ import React, { PureComponent } from 'react';
 import './dashboard.scss';
 
 class Stats extends React.Component {
+  constructor(props) {
+    super(props)
+      this.state = {
+        expenses: []
+      }
+  }
+
+  componentDidMount() {
+    fetch('/api/expenses')
+    .then(response => response.json())
+    .then(data => this.setState({ expenses: data.expenses }))
+  }
 
   render() {
     return (

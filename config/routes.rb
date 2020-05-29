@@ -3,14 +3,16 @@ Rails.application.routes.draw do
 
   get '/dashboard'        => 'static_pages#dashboard'
   get '/login'            => 'static_pages#login'
-  get '/form'             => 'static_pages#form'   
+  get '/form'             => 'static_pages#form'
+  get '/report'           => 'static_pages#report'   
 
   namespace :api do
 
     resources :users, only: [:create]
     resources :sessions, only: [:create, :destroy]
-    resources :expenses, only: [:index,:create, :show]
+    resources :expenses, only: [:index,:create]
 
+    get '/expenses'         => 'expenses#index'
     post '/expenses'        => 'expenses#create'
     get '/authenticated'    => 'sessions#authenticated'
   end

@@ -1,15 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Standard from "./standard"
-import Report from "./report"
+import Report from '../report/report';
 
 import './dashboard.scss';
+
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      render:''
+      render:'',
     }
   }
 
@@ -32,7 +32,7 @@ class Dashboard extends React.Component {
       <div className="row min-vh-100 flex-column flex-md-row">
           <aside className="col-12 col-md-2 p-0 flex-shrink-1 sidebar-container">
               <nav id="sidebar" className="navbar navbar-expand sidebar-navigation flex-md-column flex-row align-items-start py-2">
-                  <div className="collapse navbar-collapse ">
+                    <div className="collapse navbar-collapse ">
                       <ul className="flex-md-column flex-row navbar-nav w-100 justify-content-between navigation">
                           <p className="nav-item m-2 mr-5" id="brand">travex</p>
                           <li className="nav-item link">
@@ -64,7 +64,7 @@ class Dashboard extends React.Component {
                   </div>
               </nav>
           </aside>
-          <main className="col py-3 flex-grow-1">
+          <main className="col py-3 flex-grow-1" >
 
               {this._renderSubComp()}
 
