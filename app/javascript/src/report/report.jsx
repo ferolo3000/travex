@@ -1,15 +1,18 @@
 import React from "react";
-import Receipt from "./receipt";
+import { Button, Modal } from 'react-bootstrap'
+//import Receipt from "./receipt";
 
 import './report.scss';
 
 class Report extends React.Component {
-
-  constructor() {
-    super();
-
-    this.state = { checked: false };
-    this.handleChange = this.handleChange.bind(this);
+  constructor(props) {
+    super(props)
+      this.state = {
+        expenses: [],
+        showHide : false,
+        checked: false
+      }
+      this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange() {
@@ -17,6 +20,46 @@ class Report extends React.Component {
       checked: !this.state.checked
     })
   }
+
+
+
+  handleModalShowHide() {
+    this.setState({ showHide: !this.state.showHide })
+  }
+
+  componentDidMount() {
+    fetch('/api/expenses')
+    .then(response => response.json())
+    .then(data => this.setState({ expenses: data.expenses }))
+  }
+
+  renderTableData() {
+
+    const data = this.state.expenses
+    const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date))
+    return sorted.map((expense, index) => {
+       const { id, location, date, category, merchant, amount, payment_method, image_url } = expense 
+       return (
+          <tr key={id}>
+             <td>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={this.state.checked}
+                    onChange={this.handleChange} />
+                </label>
+             </td>
+             <td>{date}</td>
+             <td>{location}</td>
+             <td>{category}</td>
+             <td>{merchant}</td>
+             <td className="amount">{amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+             <td>{payment_method}</td>
+             <td></td>
+          </tr>
+       )
+    })
+ }
 
   render() {
     const actions = this.state.checked
@@ -121,46 +164,16 @@ class Report extends React.Component {
                 <tr>
                   <th scope="col"></th>
                   <th scope="col">Date</th>
-                  <th scope="col">Category</th>
                   <th scope="col">Location</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Merchant</th>
                   <th scope="col">Amount</th>
                   <th scope="col">Payment Method</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                      <label>
-                          <input
-                              type="checkbox"
-                              checked={this.state.checked}
-                              onChange={this.handleChange} />
-                      </label>
-                  </td>
-                  <td>27-10-2018</td>
-                  <td>Transportation</td>
-                  <td>London</td>
-                  <td>134</td>
-                  <td>Credit Card</td>
-                  <td><Receipt /></td>
-                </tr>
-                <tr>
-                  <td>
-                      <label>
-                          <input
-                              type="checkbox"
-                              checked={this.state.checked}
-                              onChange={this.handleChange} />
-                      </label>
-                  </td>
-                  <td>27-10-2018</td>
-                  <td>Transportation</td>
-                  <td>London</td>
-                  <td>134</td>
-                  <td>Credit Card</td>
-                  <td><Receipt /></td>
-                </tr>
+              {this.renderTableData()}
               </tbody>
             </table>
           </div>

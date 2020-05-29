@@ -27,7 +27,7 @@ class Table extends React.Component {
              <td>{date}</td>
              <td>{location}</td>
              <td>{category}</td>
-             <td className="amount">${amount}</td>
+             <td className="amount">{amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
              <td>{payment_method}</td>
           </tr>
        )
