@@ -1,6 +1,7 @@
 import React from "react";
-import { Button, Modal } from 'react-bootstrap'
-//import Receipt from "./receipt";
+import Pagination from "./pagination";
+import Table from "./table";
+
 
 import './report.scss';
 
@@ -10,7 +11,10 @@ class Report extends React.Component {
       this.state = {
         expenses: [],
         showHide : false,
-        checked: false
+        checked: false,
+        currentPage: 1,
+        setCurrentPage: 1,
+        postsPerPage: 3
       }
       this.handleChange = this.handleChange.bind(this);
   }
@@ -20,8 +24,6 @@ class Report extends React.Component {
       checked: !this.state.checked
     })
   }
-
-
 
   handleModalShowHide() {
     this.setState({ showHide: !this.state.showHide })
@@ -33,35 +35,18 @@ class Report extends React.Component {
     .then(data => this.setState({ expenses: data.expenses }))
   }
 
-  renderTableData() {
-
-    const data = this.state.expenses
-    const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date))
-    return sorted.map((expense, index) => {
-       const { id, location, date, category, merchant, amount, payment_method, image_url } = expense 
-       return (
-          <tr key={id}>
-             <td>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={this.state.checked}
-                    onChange={this.handleChange} />
-                </label>
-             </td>
-             <td>{date}</td>
-             <td>{location}</td>
-             <td>{category}</td>
-             <td>{merchant}</td>
-             <td className="amount">{amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
-             <td>{payment_method}</td>
-             <td></td>
-          </tr>
-       )
-    })
- }
 
   render() {
+    const data = this.state.expenses
+    const { currentPage, postsPerPage, setCurrentPage, expenses } = this.state
+    // Get current data
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
     const actions = this.state.checked
       ? <div className="row">
           <div className="form-group col-lg-3 col-md-6">
@@ -159,6 +144,7 @@ class Report extends React.Component {
         <div className="card card-summary mt-2">
           <div className="card-header">Expenses</div>
           <div className="table-responsive-lg">
+            { this.state.expenses.length > 0 ? 
             <table className="table table-hover w-100 d-block d-md-table">
               <thead>
                 <tr>
@@ -173,10 +159,21 @@ class Report extends React.Component {
                 </tr>
               </thead>
               <tbody>
-              {this.renderTableData()}
+                <Table data={currentPosts} />
               </tbody>
             </table>
+            : <React.Fragment>
+                <div className="text-center mt-5 mb-5">
+                  <img src="https://img.icons8.com/cotton/64/000000/delete-receipt.png"/>
+                  <h3 className="text-center mt-2">You don't have any expenses</h3>
+                </div>
+              </React.Fragment>}
           </div>
+          <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={expenses.length}
+                paginate={paginate}
+          />
         </div>
       </div>
     )
