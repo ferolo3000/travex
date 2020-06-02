@@ -1,7 +1,4 @@
 import React from "react";
-import Pagination from "./pagination";
-import Table from "./table";
-
 
 import './report.scss';
 
@@ -13,16 +10,22 @@ class Report extends React.Component {
         showHide : false,
         checked: false,
         currentPage: 1,
-        setCurrentPage: 1,
-        postsPerPage: 3
+        itemPerPage: 5
       }
       this.handleChange = this.handleChange.bind(this);
+      this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange() {
     this.setState({
       checked: !this.state.checked
     })
+  }
+
+  handleClick(event) {
+    this.setState({
+      currentPage: Number(event.target.id)
+    });
   }
 
   handleModalShowHide() {
@@ -35,18 +38,63 @@ class Report extends React.Component {
     .then(data => this.setState({ expenses: data.expenses }))
   }
 
-
   render() {
-    const data = this.state.expenses
-    const { currentPage, postsPerPage, setCurrentPage, expenses } = this.state
-    // Get current data
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+    const { expenses, currentPage, itemPerPage } = this.state;
 
-    // Change page
-    const paginate = pageNumber => setCurrentPage(pageNumber);
+    // Logic for displaying current todos
+    const indexOfLastItem = currentPage * itemPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemPerPage;
+    const currentList = expenses.slice(indexOfFirstItem, indexOfLastItem);
 
+    // Logic for displaying page numbers
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(expenses.length / itemPerPage); i++) {
+      pageNumbers.push(i);
+    }
+
+    const renderPageNumbers = pageNumbers.map(number => {
+      return (
+        <li
+          className='page-item page-link paginate'
+          key={number}
+          id={number}
+          onClick={this.handleClick}
+        >
+          {number}
+        </li>
+      );
+    });
+
+    //Table data
+    const RenderTable = () => {
+      const data = currentList
+      const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date))
+      return sorted.map((expense, index) => {
+         const { id, location, date, category, merchant, amount, payment_method, image_url } = expense 
+         return (
+            <tr key={id}>
+               <td>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={this.state.checked}
+                      onChange={this.handleChange} />
+                  </label>
+               </td>
+               <td>{date}</td>
+               <td>{location}</td>
+               <td>{category}</td>
+               <td>{merchant}</td>
+               <td className="amount">{amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+               <td>{payment_method}</td>
+               <td></td>
+            </tr>
+         )
+      })
+   }
+
+
+    //Action Button
     const actions = this.state.checked
       ? <div className="row">
           <div className="form-group col-lg-3 col-md-6">
@@ -68,6 +116,8 @@ class Report extends React.Component {
           </div>
         </div>
       : null;
+
+
 
     return (
       <div className="container">
@@ -159,7 +209,7 @@ class Report extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                <Table data={currentPosts} />
+                <RenderTable />
               </tbody>
             </table>
             : <React.Fragment>
@@ -169,11 +219,18 @@ class Report extends React.Component {
                 </div>
               </React.Fragment>}
           </div>
-          <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={expenses.length}
-                paginate={paginate}
-          />
+          <div className="row">
+            <div className="col-8">
+              <nav>
+                <ul className='pagination ml-3'>
+                  {renderPageNumbers}
+                </ul>
+              </nav>
+            </div>
+            <div className="col-4 text-right">
+            <p className="item-count">Total: {currentList.length + indexOfFirstItem} of {expenses.length} </p>
+            </div>
+          </div>
         </div>
       </div>
     )
