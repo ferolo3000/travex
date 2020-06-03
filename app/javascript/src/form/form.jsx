@@ -55,7 +55,7 @@ class Form extends React.Component {
               <div className="form-group col-md-6">
                 <label forhtml="categoryID">Category</label>
                 <select className="category-options" id="categoryID">
-                  <option disabled selected>Select...</option>
+                  <option disabled>Select...</option>
                   <option>✈  Air Travel</option>
                   <option>🏨  Lodging</option>
                   <option>🍽  Meals & Entertainment</option>
@@ -67,7 +67,7 @@ class Form extends React.Component {
               <div className="form-group col-md-6">
                 <label forhtml="paymentID">Payment Method</label>
                 <select className="pay-options" id="paymentID">
-                  <option disabled selected>Select...</option>
+                  <option disabled>Select...</option>
                   <option>💵  Cash</option>
                   <option>💳  Credit Card</option>
                   <option>💰  Other Payment Method</option>
