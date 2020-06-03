@@ -102,11 +102,15 @@ h1, h2, h3, h4, h5, h5, h6, th {
     margin-top: 5px;
   }
 
-  table
-{
-    table-layout:fixed;
-    width:100%;
-}
+  .pagination-footer {
+    width: 600px;
+  }
+
+ // table
+//{
+ //   table-layout:fixed;
+//    width:100%;
+//}
 
   .rtable {
     display: inline-block;
@@ -197,10 +201,6 @@ h1, h2, h3, h4, h5, h5, h6, th {
   #filter-btn, #add-btn {
     margin-top: 2rem;
   }
-}
-
-.table-responsive .table {
-    max-width: none;
 }
 
 //-------START css report-----------
@@ -414,5 +414,13 @@ label {
 
 .item-count {
   padding: 5px;
-  margin-right: 20px;
+  font-size: small;
+}
+
+#items {
+  font-size: small;
+  width: fit-content;
+  border-radius: 5px;
+  padding: 5px;
+  background-color:$color-bg;
 }
