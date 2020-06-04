@@ -15,8 +15,8 @@ class Report extends React.Component {
         checked: false,
         currentPage: 1,
         itemPerPage: 5,
-        filterCategory: '',
-        filterPayment: ''
+        filterCategory: 'All',
+        filterPayment: 'All'
       }
       this.handleChange = this.handleChange.bind(this);
       this.handleFilter = this.handleFilter.bind(this);
@@ -37,6 +37,7 @@ class Report extends React.Component {
   };
 
   handleClick(event) {
+    event.preventDefault();
     this.setState({
       currentPage: Number(event.target.id)
     });
@@ -53,6 +54,7 @@ class Report extends React.Component {
   }
 
   render() {
+    console.log(this.state.filterPayment)
     console.log(this.state.filterCategory)
     const { expenses, currentPage, itemPerPage, filterCategory, filterPayment } = this.state;
 
@@ -63,13 +65,26 @@ class Report extends React.Component {
     
 
     // Logic for Data
-    let filteredData;
-    if(filterCategory !== "All") {
-      filteredData = expenses.filter(option => option.category.match(filterCategory))
-    } else {
-      filteredData = expenses
+    let filterData;
+
+    if(filterCategory == "All" && filterPayment == "All") {
+      filterData = expenses
     }
-    const currentList = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+    if(filterCategory !== "All" && filterPayment == "All") {
+      filterData = expenses.filter(item => item.category == filterCategory)
+    }
+
+    if(filterCategory == "All" && filterPayment !== "All") {
+      filterData = expenses.filter(item => item.payment_method == filterPayment)
+    }
+
+    if(filterCategory !== "All" && filterPayment !== "All") {
+      filterData = expenses.filter(item => item.category == filterCategory && item.payment_method == filterPayment)
+    }
+
+
+    const currentList = filterData.slice(indexOfFirstItem, indexOfLastItem);
 
     // Logic for displaying page numbers
     const pageNumbers = [];
@@ -80,12 +95,13 @@ class Report extends React.Component {
     // Render pagination
     const renderPageNumbers = pageNumbers.map(number => {
       return (
-        <li
-          className='page-item page-link paginate'
-          key={number}
-          id={number}
-          onClick={this.handleClick}>
-          {number}
+        <li key={number}>
+          <a className='target paginate'
+            href=""
+            id={number}
+            onClick={this.handleClick}>
+            {number}
+          </a>
         </li>
       );
     });  
@@ -123,7 +139,7 @@ class Report extends React.Component {
         </div>
         <div className="row">
           <Category onChange={this.handleFilter} name={"filterCategory"} value={this.state.filterCategory} />
-          <Payment onChange={this.handleFilter} name={"filterCategory"} value={this.state.filterPayment} />
+          <Payment onChange={this.handleFilter} name={"filterPayment"} value={this.state.filterPayment} />
           <div className="col-4">
             <button id="add-btn" className="btn btn-lg" onClick={() => {window.location.href='/form'}}>
                 <svg className="bi bi-plus" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

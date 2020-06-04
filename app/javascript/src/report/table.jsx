@@ -1,6 +1,8 @@
 import React from "react";
+import Receipt from "./receipt"
 
 const RenderTable = ({data}) => {
+
 
     const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date))
     return sorted.map((expense, index) => {
@@ -20,7 +22,9 @@ const RenderTable = ({data}) => {
              <td>{merchant}</td>
              <td className="amount">{amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
              <td>{payment_method}</td>
-             <td></td>
+             { image_url == '' ? 
+             <td></td> : <td><Receipt image={image_url} category={category} amount={amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })} date={date} /></td> }
+             
           </tr>
        )
     })

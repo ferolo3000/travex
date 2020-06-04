@@ -33,7 +33,7 @@ expenses = Expense.create([
     split: 1,
     payment_method: 'Cash',
     note: 'Restaurant close to the hotel',
-    image_url: 'https://ferolobucket.s3.amazonaws.com/restaurant.png',
+    image_url: 'https://clark.com/wp-content/uploads/2018/10/receipt.jpg',
     user: users.first
   },
   {
@@ -45,7 +45,7 @@ expenses = Expense.create([
     split: 1,
     payment_method: 'Credit Card',
     note: 'Restaurant close to the hotel',
-    image_url: 'https://ferolobucket.s3.amazonaws.com/restaurant.png',
+    image_url: 'https://previews.123rf.com/images/latkun/latkun1903/latkun190300045/119689770-realistic-paper-shop-receipt-with-barcode-vector-shop-terminal-vector.jpg',
     user: users.first
   },
   {
@@ -57,7 +57,7 @@ expenses = Expense.create([
     split: 1,
     payment_method: 'Cash',
     note: 'Bus to the airport',
-    image_url: 'https://ferolobucket.s3.amazonaws.com/taxi.png',
+    image_url: 'https://images-na.ssl-images-amazon.com/images/I/511jYRk5VsL._AC_SY355_.jpg',
     user: users.second
   },
   {
@@ -69,7 +69,7 @@ expenses = Expense.create([
     split: 1,
     payment_method: 'Other Payment Method',
     note: 'Taxi to the airport',
-    image_url: 'https://ferolobucket.s3.amazonaws.com/taxi.png',
+    image_url: 'https://bloximages.chicago2.vip.townnews.com/dailylocal.com/content/tncms/assets/v3/editorial/d/77/d7745b82-1c1f-11e9-b3bb-032816e700e0/5c43798f9d036.image.jpg',
     user: users.second
   },
   {

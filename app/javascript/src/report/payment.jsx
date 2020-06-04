@@ -11,7 +11,7 @@ const Payment = ({name, value, onChange}) => {
                 </svg> Payment
             </label>
             <select name={name}  className="category-options" id="categoryID" value={value} onChange={onChange}>
-                <option defaultValue>All</option>
+                <option value="All">All</option>
                 <option value="Cash">💵  Cash</option>
                 <option value="Credit Card">💳  Credit Card</option>
                 <option value="Other Payment Method">💰  Other Payment Method</option>

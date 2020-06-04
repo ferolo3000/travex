@@ -10,7 +10,7 @@ const Category = ({name, value, onChange}) => {
                 </svg> Category
             </label>
             <select name={name}  className="category-options" id="categoryID" value={value} onChange={onChange}>
-                <option defaultValue>All</option>
+                <option value="All">All</option>
                 <option value="Air Travel">✈  Air Travel</option>
                 <option value="Lodging">🏨  Lodging</option>
                 <option value="Meals & Entertainment">🍽  Meals & Entertainment</option>
