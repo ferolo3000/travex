@@ -88,7 +88,7 @@ class Report extends React.Component {
 
     // Logic for displaying page numbers
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(expenses.length / itemPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(filterData.length / itemPerPage); i++) {
       pageNumbers.push(i);
     }
 
@@ -183,7 +183,7 @@ class Report extends React.Component {
                   </nav>
                 </div>
                 <div className="col-3 text-right">
-                  <p className="item-count">Total: {currentList.length + indexOfFirstItem} of {expenses.length} </p>
+                  <p className="item-count">Total: {currentList.length + indexOfFirstItem} of {filterData.length} </p>
                 </div>
                 <div className="col-4 text-center">
                   <select id="items" value={this.state.itemPerPage} onChange={this.handleChange}>
