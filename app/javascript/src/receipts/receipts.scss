@@ -1,0 +1,49 @@
+$ruler: 12px;
+$color-red: #ef5675;
+$color-bg: #EBECF0;
+$color-shadow: #BABECC;
+$color-white: #FFF;
+$color-purple: #7a5195;
+$color-black: #393e46;
+$color-blue: #003f5c;
+$color-orange: #ffa600;
+$color-green: #50d890;
+
+body {
+  font-family: 'Jost', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h5, h6, th {
+  font-family: 'Raleway', sans-serif;
+}
+
+#brand {
+  color: $color-white;
+}
+
+.title {
+  color: $color-red;
+}
+
+.responsive {
+  width: 100%;
+  max-width: 400px;
+  height: 300px;
+}
+
+.main-text {
+  color: $color-red;
+  font-size: 1.2rem;
+}
+
+.text {
+  color: $color-shadow;
+  font-size: 1rem;
+}
+
+.amount {
+  color: $color-green;
+  font-size: 1rem;
+}
+
+

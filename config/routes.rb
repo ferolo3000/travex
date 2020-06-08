@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/login'            => 'static_pages#login'
   get '/form'             => 'static_pages#form'
   get '/report'           => 'static_pages#report'   
+  get '/receipts'           => 'static_pages#receipts' 
 
   namespace :api do
 

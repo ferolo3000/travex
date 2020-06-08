@@ -12,16 +12,28 @@ class Report extends React.Component {
       this.state = {
         expenses: [],
         showHide : false,
-        checked: false,
         currentPage: 1,
         itemPerPage: 5,
         filterCategory: 'All',
-        filterPayment: 'All'
+        filterPayment: 'All',
+
+        item: 0,
+        isChecked: false,
       }
       this.handleChange = this.handleChange.bind(this);
       this.handleFilter = this.handleFilter.bind(this);
       this.handleClick = this.handleClick.bind(this);
+
+      this.handleCheckbox = this.handleCheckbox.bind(this);
   }
+
+  handleCheckbox(e) {
+    this.setState({
+      item: e.target.name,
+      isChecked: e.target.checked
+    });
+  }
+
 
   handleChange(event) {
     this.setState({
@@ -35,6 +47,7 @@ class Report extends React.Component {
       [name]: value
     })
   };
+
 
   handleClick(event) {
     event.preventDefault();
@@ -54,8 +67,8 @@ class Report extends React.Component {
   }
 
   render() {
-    console.log(this.state.filterPayment)
-    console.log(this.state.filterCategory)
+    console.log(this.state.item)
+    console.log(this.state.isChecked)
     const { expenses, currentPage, itemPerPage, filterCategory, filterPayment } = this.state;
 
 //----------------------Start Pagination-----------------------//
@@ -108,15 +121,21 @@ class Report extends React.Component {
 //----------------------End Pagination-----------------------//
 
 //----------------------Start Action Options------------------//
-    const actions = this.state.checked
+    const actions = this.state.isChecked
       ? <div className="row">
-          <div className="form-group col-lg-3 col-md-6">
+            <label forhtml="mt-2 payID">
+              <svg className="bi bi-file-check mr-2 ml-3 mb-1" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8h-1v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h5V1z"/>
+                <path fillRule="evenodd" d="M15.854 2.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 4.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+              </svg> Actions
+            </label>
+          <div className="form-group col-lg-8 col-md-8">
             <select className="category-options" id="categoryID">
-              <option value="" disabled selected>Actions</option>
-              <option>&#9940;  Delete</option>
-              <option>&#9989;  Edit</option>
+              <option value="" disabled>Actions</option>
+              <option>✏  Edit</option>
               <option>&#128209;  Export to PDF</option>
               <option>&#128199;  View</option>
+              <option>&#9940;  Delete</option>
             </select>
           </div>
           <div className="col-md-2">
@@ -140,7 +159,7 @@ class Report extends React.Component {
         <div className="row">
           <Category onChange={this.handleFilter} name={"filterCategory"} value={this.state.filterCategory} />
           <Payment onChange={this.handleFilter} name={"filterPayment"} value={this.state.filterPayment} />
-          <div className="col-4">
+          <div className="col-2">
             <button id="add-btn" className="btn btn-lg" onClick={() => {window.location.href='/form'}}>
                 <svg className="bi bi-plus" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z" />
@@ -148,10 +167,10 @@ class Report extends React.Component {
                 </svg>
             </button>
           </div>
-        </div>  
-        <div className="action-buttons">
+          <div className="col-md-4 col-sm-6 action-buttons">
             {actions}
         </div>
+        </div>  
         <div className="card card-summary mt-2">
           <div className="card-header">Expenses</div>
           { expenses.length > 0 ? 
@@ -170,7 +189,11 @@ class Report extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                <RenderTable data={currentList}/>
+                <RenderTable 
+                  data={currentList} 
+                  checked={this.state.item}
+                  onChange={this.handleCheckbox}  
+                  />
               </tbody>
             </table>
             <div className="pagination-footer">

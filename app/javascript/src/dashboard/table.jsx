@@ -36,7 +36,7 @@ class Table extends React.Component {
 
 
     render(){
-      console.log(this.state.expenses.length)
+
       if(this.state.expenses.length > 0) {
         return(
           <table className="rtable rtable--flip table table-hover">

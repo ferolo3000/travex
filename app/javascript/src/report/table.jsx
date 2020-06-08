@@ -1,19 +1,23 @@
 import React from "react";
 import Receipt from "./receipt"
 
-const RenderTable = ({data}) => {
-
+const RenderTable = ({ data,onChange, checked }) => {
 
     const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date))
     return sorted.map((expense, index) => {
        const { id, location, date, category, merchant, amount, payment_method, image_url } = expense 
+
        return (
           <tr key={id}>
              <td>
                 <label>
                   <input
-                    type="checkbox"
-                     />
+                     id={id}
+                     type="checkbox"
+                     name={id}
+                     onChange={onChange}
+                     checked={id == checked}
+                  />
                 </label>
              </td>
              <td>{date}</td>
