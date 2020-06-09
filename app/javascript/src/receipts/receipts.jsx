@@ -33,11 +33,11 @@ class Receipts extends React.Component {
     let filterData;
 
     if(filterCategory == "All") {
-      filterData = expenses
+      filterData = expenses.filter(item => item.image_url.length > 0)
     }
 
     if(filterCategory !== "All") {
-      filterData = expenses.filter(item => item.category == filterCategory)
+      filterData = expenses.filter(item => item.category == filterCategory && item.image_url.length > 0)
     }
 
     if(filterData.length < 1 ) {
@@ -53,7 +53,7 @@ class Receipts extends React.Component {
           return (
               <div className="col-md-4 card" key={id}> 
                 <p className="main-text mt-2">{category}</p>
-                <img className="responsive card-img-top" src={image_url} />
+                <a href={`/api/expenses/${id}`}><img className="responsive card-img-top" src={image_url} /></a>
                 <div className="card-body">
                   <p className="secondary-text">  
                       <span className="text"> {location} | </span> 

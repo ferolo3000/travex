@@ -7,6 +7,10 @@ class StaticPagesController < ApplicationController
     render 'login'
   end
 
+  def edit
+    render 'edit'
+  end
+
   def dashboard
     render 'dashboard'
   end

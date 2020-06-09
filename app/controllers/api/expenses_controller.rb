@@ -15,8 +15,26 @@ module Api
 
     def index
       @expenses = Expense.all
-
       render 'api/expenses/index', status: :ok
+    end
+
+    def show
+      @expense = Expense.find_by(id: params[:id])
+      render 'api/expenses/show', status: :ok
+    end
+
+    def update
+
+      expense = Expense.find_by(id: params[:id])
+      expense.update_attributes(expense_params)
+
+      if expense.save
+        render json: expense
+        #render 'api/edit/:id', status: :ok
+      else
+        render json: { success: false }, status: :bad_request
+      end
+
     end
 
 

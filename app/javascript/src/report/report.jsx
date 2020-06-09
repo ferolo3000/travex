@@ -16,14 +16,14 @@ class Report extends React.Component {
         itemPerPage: 5,
         filterCategory: 'All',
         filterPayment: 'All',
-
+        action:'',
         item: 0,
         isChecked: false,
       }
       this.handleChange = this.handleChange.bind(this);
       this.handleFilter = this.handleFilter.bind(this);
       this.handleClick = this.handleClick.bind(this);
-
+      this.handleAction = this.handleAction.bind(this);
       this.handleCheckbox = this.handleCheckbox.bind(this);
   }
 
@@ -48,6 +48,16 @@ class Report extends React.Component {
     })
   };
 
+  handleAction = (event) => {
+    this.setState({ action: event.target.value})
+  };
+
+  handleOnClickAction = (event) => {
+    const { action } = this.state;
+    if (action == "edit") {
+      window.location = `/api/expenses/${this.state.item}`;
+    }
+  }
 
   handleClick(event) {
     event.preventDefault();
@@ -67,8 +77,8 @@ class Report extends React.Component {
   }
 
   render() {
-    console.log(this.state.item)
-    console.log(this.state.isChecked)
+    console.log(this.state.action)
+
     const { expenses, currentPage, itemPerPage, filterCategory, filterPayment } = this.state;
 
 //----------------------Start Pagination-----------------------//
@@ -130,16 +140,16 @@ class Report extends React.Component {
               </svg> Actions
             </label>
           <div className="form-group col-lg-8 col-md-8">
-            <select className="category-options" id="categoryID">
+            <select className="category-options" id="categoryID" value={this.state.action} onChange={this.handleAction}>
               <option value="" disabled>Actions</option>
-              <option>✏  Edit</option>
-              <option>&#128209;  Export to PDF</option>
-              <option>&#128199;  View</option>
-              <option>&#9940;  Delete</option>
+              <option value="edit">✏  Edit</option>
+              <option value="export">📤  Export to PDF</option>
+              <option value="view">👓  View</option>
+              <option value="delete">🗑  Delete</option>
             </select>
           </div>
           <div className="col-md-2">
-            <button id="action-btn" className="btn btn-lg">
+            <button id="action-btn" className="btn btn-lg" onClick={this.handleOnClickAction}>
               <svg className="bi bi-check-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" d="M15.354 2.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3-3a.5.5 0 11.708-.708L8 9.293l6.646-6.647a.5.5 0 01.708 0z" clipRule="evenodd"/>
                 <path fillRule="evenodd" d="M8 2.5A5.5 5.5 0 1013.5 8a.5.5 0 011 0 6.5 6.5 0 11-3.25-5.63.5.5 0 11-.5.865A5.472 5.472 0 008 2.5z" clipRule="evenodd"/>

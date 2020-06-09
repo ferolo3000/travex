@@ -21,7 +21,7 @@ expenses = Expense.create([
     split: 2,
     payment_method: 'Credit Card',
     note: 'Hotel for Reactjs Conference in New York',
-    image_url: 'https://ferolobucket.s3.amazonaws.com/hotel.png',
+    image_url: 'https://www.invoicesimple.com/wp-content/uploads/2018/05/Screen-Shot-2018-05-30-at-11.08.40-AM.png',
     user: users.first
   },
   {
@@ -33,7 +33,7 @@ expenses = Expense.create([
     split: 1,
     payment_method: 'Cash',
     note: 'Restaurant close to the hotel',
-    image_url: 'https://clark.com/wp-content/uploads/2018/10/receipt.jpg',
+    image_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/ReceiptSwiss.jpg/170px-ReceiptSwiss.jpg',
     user: users.first
   },
   {
@@ -57,7 +57,7 @@ expenses = Expense.create([
     split: 1,
     payment_method: 'Cash',
     note: 'Bus to the airport',
-    image_url: 'https://images-na.ssl-images-amazon.com/images/I/511jYRk5VsL._AC_SY355_.jpg',
+    image_url: '',
     user: users.second
   },
   {
@@ -93,7 +93,7 @@ expenses = Expense.create([
     split: 1,
     payment_method: 'Credit Card',
     note: 'Flight Tickets',
-    image_url: '',
+    image_url: 'https://templates.invoicehome.com/receipt-template-us-classic-white-750px.png',
     user: users.second
   },
   {

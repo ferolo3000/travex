@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 import './login.scss';
@@ -17,33 +16,40 @@ class SignupWidget extends React.Component {
     this.handleSignup = this.handleSignup.bind(this);
   }
 
-  handleChange = (event) => {
-    const {name, value} = event.target
+  handleChange = (e) => {
     this.setState({
-      [name]: value
+      [e.target.name]: e.target.value,
     })
-  };
+  }
 
-  handleSignup(event) {
-  event.preventDefault();
-  const { email, password, username } = this.state;
+  handleSignup(e) {
+    if (e) { e.preventDefault(); }
+    this.setState({
+      error: '',
+    });
 
-  fetch(`/api/users`, safeCredentials({
-    method: 'POST',
-    body: JSON.stringify({
-      user: {
-        username: username,
-        email: email,
-        password: password,
-      }
-    })
-  }))
-  .then(handleErrors)
-  .then(res => {
-    console.log(res);
-    console.log(email, password, name);
-  })
-}
+    fetch(`/api/users`, safeCredentials({
+      method: 'POST',
+      body: JSON.stringify({
+        user: {
+          username: this.state.username,
+          email: this.state.email,
+          password: this.state.password,
+        }
+      })
+    }))
+    .then(handleErrors)
+      .then(data => {
+        if (data.user) {
+          this.login();
+        }
+      })
+      .catch(error => {
+        this.setState({
+          error: 'Could not sign up.',
+        })
+      })
+  }
 
   render() {
     return (
