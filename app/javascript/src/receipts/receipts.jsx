@@ -43,7 +43,7 @@ class Receipts extends React.Component {
     if(filterData.length < 1 ) {
       return (
         <div className="container">
-          <Message />
+          <Message message={"You don't have any receipt"}/>
         </div>
       )
     } else {
@@ -53,7 +53,7 @@ class Receipts extends React.Component {
           return (
               <div className="col-md-4 card" key={id}> 
                 <p className="main-text mt-2">{category}</p>
-                <a href={`/api/expenses/${id}`}><img className="responsive card-img-top" src={image_url} /></a>
+                <a href={`/expenses/${id}`}><img className="responsive card-img-top" src={image_url} /></a>
                 <div className="card-body">
                   <p className="secondary-text">  
                       <span className="text"> {location} | </span> 

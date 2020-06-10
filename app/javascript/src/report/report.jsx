@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Message from "./message"
 import Category from "./category"
 import Payment from "./payment"
 import RenderTable from "./table"
+import update from 'immutability-helper'
+import { safeCredentials } from '@utils/fetchHelper';
 
 import './report.scss';
 
@@ -52,11 +54,24 @@ class Report extends React.Component {
     this.setState({ action: event.target.value})
   };
 
-  handleOnClickAction = (event) => {
-    const { action } = this.state;
-    if (action == "edit") {
-      window.location = `/api/expenses/${this.state.item}`;
-    }
+  handleOnClickAction = () => {
+    window.location = `/expenses/${this.state.item}`;
+  }
+
+  handleDeleteItem = () => {
+    fetch(`/api/expenses/${this.state.item}`, safeCredentials({
+      method: 'DELETE',
+    }))
+      .then(response => {
+        const itemIndex = this.state.expenses.findIndex(x => x.id === this.state.item)
+        const updateExpenses = update(this.state.expenses, {
+          $splice: [[itemIndex, 1]]
+        })
+        this.setState({
+          expenses: updateExpenses
+        })
+      })
+      .catch(error => console.log(error))
   }
 
   handleClick(event) {
@@ -142,14 +157,12 @@ class Report extends React.Component {
           <div className="form-group col-lg-8 col-md-8">
             <select className="category-options" id="categoryID" value={this.state.action} onChange={this.handleAction}>
               <option value="" disabled>Actions</option>
-              <option value="edit">✏  Edit</option>
-              <option value="export">📤  Export to PDF</option>
-              <option value="view">👓  View</option>
+              <option value="edit">✏  Edit/View</option>
               <option value="delete">🗑  Delete</option>
             </select>
           </div>
           <div className="col-md-2">
-            <button id="action-btn" className="btn btn-lg" onClick={this.handleOnClickAction}>
+            <button id="action-btn" className="btn btn-lg" onClick={this.state.action === "delete" ? this.handleDeleteItem : this.handleOnClickAction}>
               <svg className="bi bi-check-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" d="M15.354 2.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3-3a.5.5 0 11.708-.708L8 9.293l6.646-6.647a.5.5 0 01.708 0z" clipRule="evenodd"/>
                 <path fillRule="evenodd" d="M8 2.5A5.5 5.5 0 1013.5 8a.5.5 0 011 0 6.5 6.5 0 11-3.25-5.63.5.5 0 11-.5.865A5.472 5.472 0 008 2.5z" clipRule="evenodd"/>
@@ -229,7 +242,7 @@ class Report extends React.Component {
             </div>
           </div>
           : <React.Fragment>
-                <Message />
+                <Message message={"You don't have any expenses"}/>
             </React.Fragment>}
         </div>
       </div>

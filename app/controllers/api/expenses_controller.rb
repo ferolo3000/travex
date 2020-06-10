@@ -37,6 +37,26 @@ module Api
 
     end
 
+    def destroy
+      token = cookies.signed[:travex_session_token]
+      session = Session.find_by(token: token)
+
+      return render json: { success: false } unless session
+
+      user = session.user
+      expense = Expense.find_by(id: params[:id])
+
+      if expense and expense.user == user and expense.destroy
+        render json: {
+          success: true
+        }
+      else
+        render json: {
+          success: false
+        }
+      end
+    end
+
 
     private
 

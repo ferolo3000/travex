@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
     get '/expenses'         => 'expenses#index'
     post '/expenses'        => 'expenses#create'
-
+    delete '/expenses/:id'  => 'expenses#destroy'
   end
 
   # USERS
