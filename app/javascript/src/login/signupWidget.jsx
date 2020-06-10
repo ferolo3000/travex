@@ -22,7 +22,7 @@ class SignupWidget extends React.Component {
     })
   }
 
-  handleSignup(e) {
+  handleSignup = (e) => {
     if (e) { e.preventDefault(); }
     this.setState({
       error: '',
@@ -41,12 +41,39 @@ class SignupWidget extends React.Component {
     .then(handleErrors)
       .then(data => {
         if (data.user) {
-          this.login();
+          this.handleLogin();
         }
       })
       .catch(error => {
         this.setState({
           error: 'Could not sign up.',
+        })
+      })
+  }
+
+  handleLogin = (e) => {
+    if (e) { e.preventDefault(); }
+    this.setState({
+      error: '',
+    });
+    fetch('/api/sessions', safeCredentials({
+      method: 'POST',
+      body: JSON.stringify({
+        user: {
+          username: this.state.username,
+          password: this.state.password,
+        }
+      })
+    }))
+      .then(handleErrors)
+      .then(data => {
+        if (data.success) {
+          window.location = "/dashboards";
+        }
+      })
+      .catch(error => {
+        this.setState({
+          error: 'Could not log in.',
         })
       })
   }

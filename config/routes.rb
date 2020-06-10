@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   # USERS
-  post '/users' => 'users#create'
+  post '/users'         => 'users#create'
   # SESSIONS
   post '/sessions'      => 'sessions#create'
   get '/authenticated'  => 'sessions#authenticated'

@@ -2,7 +2,7 @@
 import React from 'react';
 import LoginWidget from './loginWidget';
 import SignupWidget from './signupWidget';
-import { handleErrors } from '@utils/fetchHelper';
+import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 import './login.scss';
 
@@ -29,7 +29,24 @@ class Login extends React.Component {
   }
 
   render() {
-    const { show_login } = this.state;
+    const { authenticated, show_login } = this.state;
+    if (authenticated) {
+      return (
+        <Layout>
+          <div className="container">
+            <div className="row">
+              <div className="col-12 col-md-9 col-lg-6 mx-auto my-4">
+                <div className="border p-4 login-card">
+                  <p className="mb-0">You are already logged in 🙂</p>
+                    <a className="nav-link" href="/dashboards">Home</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Layout>
+      );
+    };
+    
     return (
       <React.Fragment>
       <nav className="navbar navbar-light bg-light">
@@ -53,7 +70,6 @@ class Login extends React.Component {
       </React.Fragment>
     )
   }
-
 }
 
 export default Login;

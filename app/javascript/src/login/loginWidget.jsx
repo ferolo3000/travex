@@ -22,8 +22,12 @@ class LoginWidget extends React.Component {
     })
   };
 
-  handleLogin(event) {
-  event.preventDefault();
+  handleLogin(e) {
+    if (e) { e.preventDefault(); }
+    this.setState({
+      error: '',
+    });
+
   const { username, password } = this.state;
 
   fetch('/api/sessions', safeCredentials({
