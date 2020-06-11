@@ -14,6 +14,7 @@ class SignupWidget extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   handleChange = (e) => {
@@ -39,16 +40,16 @@ class SignupWidget extends React.Component {
       })
     }))
     .then(handleErrors)
-      .then(data => {
-        if (data.user) {
-          this.handleLogin();
-        }
+    .then(data => {
+      if (data.user) {
+        this.handleLogin();
+      }
+    })
+    .catch(error => {
+      this.setState({
+        error: 'Could not sign up.',
       })
-      .catch(error => {
-        this.setState({
-          error: 'Could not sign up.',
-        })
-      })
+    })
   }
 
   handleLogin = (e) => {
@@ -56,6 +57,7 @@ class SignupWidget extends React.Component {
     this.setState({
       error: '',
     });
+
     fetch('/api/sessions', safeCredentials({
       method: 'POST',
       body: JSON.stringify({
@@ -65,17 +67,17 @@ class SignupWidget extends React.Component {
         }
       })
     }))
-      .then(handleErrors)
-      .then(data => {
-        if (data.success) {
-          window.location = "/dashboards";
-        }
+    .then(handleErrors)
+    .then(data => {
+      if (data.success) {
+        window.location = "/dashboards";
+      }
+    })
+    .catch(error => {
+      this.setState({
+        error: 'Could not log in.',
       })
-      .catch(error => {
-        this.setState({
-          error: 'Could not log in.',
-        })
-      })
+    })
   }
 
   render() {
@@ -112,7 +114,6 @@ class SignupWidget extends React.Component {
       </div>
     )
   }
-
 }
 
 export default SignupWidget

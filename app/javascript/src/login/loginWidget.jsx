@@ -22,7 +22,7 @@ class LoginWidget extends React.Component {
     })
   };
 
-  handleLogin(e) {
+  handleLogin = (e) => {
     if (e) { e.preventDefault(); }
     this.setState({
       error: '',
@@ -49,13 +49,11 @@ class LoginWidget extends React.Component {
   .catch(error => {
     this.setState({
       error: 'Could not log in.',
+      })
     })
-  })
-
-}
+  }
 
   render() {
-    
     return (
       <div className="col-lg-6 col-md-12">
         <form onSubmit={this.handleLogin}>
@@ -83,7 +81,6 @@ class LoginWidget extends React.Component {
       </div>
     )
   }
-
 }
 
 export default LoginWidget
