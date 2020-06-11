@@ -46,6 +46,7 @@ class SignupWidget extends React.Component {
       }
     })
     .catch(error => {
+      console.log(error.data)
       this.setState({
         error: 'Could not sign up.',
       })
@@ -108,7 +109,7 @@ class SignupWidget extends React.Component {
               onChange={this.handleChange}
               required/>
           </label>
-          <button className="red" type="button">Sign Up</button>
+          <button className="red" type="submit">Sign Up</button>
         </form>
           <p className="text-center">Already have an account? <a className="text-primary link" onClick={this.props.toggle}>Log in</a></p>
       </div>

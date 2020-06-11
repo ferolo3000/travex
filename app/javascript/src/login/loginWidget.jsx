@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 import './login.scss';
 
@@ -23,12 +23,12 @@ class LoginWidget extends React.Component {
   };
 
   handleLogin = (e) => {
-    if (e) { e.preventDefault(); }
+   if (e) { e.preventDefault(); }
     this.setState({
       error: '',
-    });
+    }); 
 
-  const { username, password } = this.state;
+ const { username, password } = this.state;
 
   fetch('/api/sessions', safeCredentials({
     method: 'POST',
@@ -47,6 +47,7 @@ class LoginWidget extends React.Component {
     console.log(data);
   })
   .catch(error => {
+    console.log(error.data)
     this.setState({
       error: 'Could not log in.',
       })
@@ -74,7 +75,7 @@ class LoginWidget extends React.Component {
               onChange={this.handleChange}
               required/>
           </label>
-          <button className="red" type="button">Log In</button>
+          <button className="red" type="submit">Log In</button>
           {this.state.error && <p className="text-danger mt-2">{this.state.error}</p>}
         </form>
           <p className="text-center">Don't have an account? <a className="text-primary link" onClick={this.props.toggle}>Sign up</a></p>
