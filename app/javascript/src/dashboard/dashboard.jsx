@@ -1,6 +1,7 @@
 import React from 'react';
 import Standard from "./standard"
 import Report from '../report/report';
+import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 import './dashboard.scss';
 
@@ -22,6 +23,18 @@ class Dashboard extends React.Component {
       case 'standard': return <Standard />
       default: return <Standard />
     }
+  }
+
+  handleLogout(e) {
+    e.preventDefault();
+
+    fetch('/api/sessions', safeCredentials({
+      method: 'DELETE',
+    }))
+    .then(response => {
+      window.location = "/";
+    })
+    .catch(error => console.log(error))
   }
 
   render() {
@@ -51,7 +64,7 @@ class Dashboard extends React.Component {
                               </a>
                           </li>
                           <li className="nav-item link">
-                              <a className="nav-link pl-0" href="#">
+                              <a className="nav-link pl-0" href="/" onClick={this.handleLogout}>
                                 <svg className="bi bi-box-arrow-left mr-1" width="1.1em" height="1.1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                   <path fillRule="evenodd" d="M4.354 11.354a.5.5 0 000-.708L1.707 8l2.647-2.646a.5.5 0 10-.708-.708l-3 3a.5.5 0 000 .708l3 3a.5.5 0 00.708 0z" clipRule="evenodd"/>
                                   <path fillRule="evenodd" d="M11.5 8a.5.5 0 00-.5-.5H2a.5.5 0 000 1h9a.5.5 0 00.5-.5z" clipRule="evenodd"/>

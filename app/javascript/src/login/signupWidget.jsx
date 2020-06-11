@@ -71,7 +71,7 @@ class SignupWidget extends React.Component {
     .then(handleErrors)
     .then(data => {
       if (data.success) {
-        window.location = "/dashboards";
+        window.location = "/dashboard";
       }
     })
     .catch(error => {

@@ -21,6 +21,7 @@ class Report extends React.Component {
         action:'',
         item: 0,
         isChecked: false,
+        user_id:''
       }
       this.handleChange = this.handleChange.bind(this);
       this.handleFilter = this.handleFilter.bind(this);
@@ -35,7 +36,6 @@ class Report extends React.Component {
       isChecked: e.target.checked
     });
   }
-
 
   handleChange(event) {
     this.setState({
@@ -86,10 +86,21 @@ class Report extends React.Component {
   }
 
   componentDidMount() {
+    fetch('/api/authenticated')
+      .then(response => response.json())
+      .then(data => {this.setState({
+        user_id: data.user_id })
+        return fetch(`/api/${this.state.user_id}/expenses`)
+        })
+        .then(response => response.json())
+        .then(data => this.setState({ expenses: data.expenses }))
+  }
+
+  /*componentDidMount() {
     fetch('/api/expenses')
     .then(response => response.json())
     .then(data => this.setState({ expenses: data.expenses }))
-  }
+  }*/
 
   render() {
     console.log(this.state.action)

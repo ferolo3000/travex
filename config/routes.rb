@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :sessions, only: [:create, :destroy]
     resources :expenses, only: [:index,:create, :show]
 
-    get '/expenses'         => 'expenses#index'
+    get '/:user_id/expenses'         => 'expenses#index'
     post '/expenses'        => 'expenses#create'
     delete '/expenses/:id'  => 'expenses#destroy'
     get '/authenticated'    => 'sessions#authenticated'

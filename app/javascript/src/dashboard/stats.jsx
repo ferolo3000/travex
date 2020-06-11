@@ -7,15 +7,27 @@ class Stats extends React.Component {
     super(props)
       this.state = {
         expenses: [],
-        search: []
+        search: [],
+        user_id:''
       }
   }
 
   componentDidMount() {
+    fetch('/api/authenticated')
+      .then(response => response.json())
+      .then(data => {this.setState({
+        user_id: data.user_id })
+        return fetch(`/api/${this.state.user_id}/expenses`)
+        })
+        .then(response => response.json())
+        .then(data => this.setState({ expenses: data.expenses }))
+  }
+
+  /*componentDidMount() {
     fetch('/api/expenses')
     .then(response => response.json())
     .then(data => this.setState({ expenses: data.expenses }))
-  }
+  }*/
 
   render() {
     const { expenses, search } = this.state

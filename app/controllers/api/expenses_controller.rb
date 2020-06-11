@@ -14,7 +14,8 @@ module Api
     end
 
     def index
-      @expenses = Expense.all
+      #@expenses = Expense.all
+      @expenses = Expense.where(user_id: params[:user_id])
       render 'api/expenses/index', status: :ok
     end
 

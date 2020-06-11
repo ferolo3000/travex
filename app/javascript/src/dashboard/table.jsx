@@ -7,15 +7,27 @@ class Table extends React.Component {
   constructor(props) {
     super(props)
       this.state = {
-        expenses: []
+        expenses: [],
+        user_id: ''
       }
   }
 
   componentDidMount() {
+    fetch('/api/authenticated')
+      .then(response => response.json())
+      .then(data => {this.setState({
+        user_id: data.user_id })
+        return fetch(`/api/${this.state.user_id}/expenses`)
+        })
+        .then(response => response.json())
+        .then(data => this.setState({ expenses: data.expenses }))
+  }
+
+ /* componentDidMount() {
     fetch('/api/expenses')
     .then(response => response.json())
     .then(data => this.setState({ expenses: data.expenses }))
-  }
+  }*/
 
   renderTableData() {
     const data = this.state.expenses
@@ -37,7 +49,7 @@ class Table extends React.Component {
 
 
     render(){
-
+      console.log(this.state.user_id)
       if(this.state.expenses.length > 0) {
         return(
           <table className="rtable rtable--flip table table-hover">
