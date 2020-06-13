@@ -2,7 +2,7 @@ import React from "react";
 
 const Category = ({name, value, onChange}) => {
     return(
-        <div className="form-group col-md-3">
+        <div className="form-group col-lg-3 col-md-5">
             <label forhtml="categoryID">
                 <svg className="bi bi-bag mr-1 mb-1" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" d="M14 5H2v9a1 1 0 001 1h10a1 1 0 001-1V5zM1 4v10a2 2 0 002 2h10a2 2 0 002-2V4H1z" clipRule="evenodd" />

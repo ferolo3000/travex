@@ -46,4 +46,45 @@ h1, h2, h3, h4, h5, h5, h6, th {
   font-size: 1rem;
 }
 
+@media only screen and (max-width: 764px) {
+  #sidebar {
+    position: relative;
+  }
+
+  #brand {
+    padding-top: 10px;
+  }
+
+  #filter-btn, #add-btn {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem;
+  }
+
+}
+
+@media only screen
+  and (min-device-width: 765px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+  .sidebar-navigation {
+    background: none;
+    position: fixed;
+  }
+
+}
+
+@media only screen and (max-width: 1024px) {
+
+
+  #filter-btn, #add-btn {
+    margin-top: 2rem;
+  }
+}
+
+.table-responsive .table {
+    max-width: none;
+}
+
 

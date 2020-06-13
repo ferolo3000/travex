@@ -2,7 +2,7 @@ import React from "react";
 
 const Payment = ({name, value, onChange}) => {
     return(
-        <div className="form-group col-md-3">
+        <div className="form-group col-lg-3 col-md-5">
             <label forhtml="payID">
                 <svg className="bi bi-credit-card mr-1 mb-1" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" d="M14 3H2a1 1 0 00-1 1v8a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1zM2 2a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H2z" clipRule="evenodd" />

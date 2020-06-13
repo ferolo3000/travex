@@ -34,6 +34,10 @@ h1, h2, h3, h4, h5, h5, h6, th {
     position: relative;
   }
 
+  .group-btn {
+    margin-left: 10%!important;
+  }
+
   #brand {
     padding-top: 10px;
   }
@@ -156,6 +160,10 @@ div, p {
 form {
   padding: $ruler;
   margin: 0 auto;
+}
+
+.group-btn {
+  margin-left: 40%;
 }
 
 .segment {

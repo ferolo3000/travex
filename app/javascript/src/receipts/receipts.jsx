@@ -63,7 +63,7 @@ class Receipts extends React.Component {
         const { id, location, date, category, amount, image_url } = expense 
 
           return (
-              <div className="col-md-4 card" key={id}> 
+              <div className="col-lg-4 col-md-6 card" key={id}> 
                 <p className="main-text mt-2">{category}</p>
                 <a href={`/expenses/${id}`}><img className="responsive card-img-top" src={image_url} /></a>
                 <div className="card-body">
@@ -88,8 +88,8 @@ class Receipts extends React.Component {
             <h2 className="title mb-2">Receipts</h2>
         </div>
         <div className="row">
-          <Category onChange={this.handleFilter} name={"filterCategory"} value={this.state.filterCategory} />
-          <div className="col-4">
+            <Category onChange={this.handleFilter} name={"filterCategory"} value={this.state.filterCategory} />
+          <div className="col-lg-4 col-md-4">
             <button id="add-btn" className="btn btn-lg" onClick={() => {window.location.href='/form'}}>
                 <svg className="bi bi-plus" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z" />

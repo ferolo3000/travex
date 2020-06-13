@@ -70,6 +70,7 @@ class Report extends React.Component {
         this.setState({
           expenses: updateExpenses
         })
+        alert("deleted successfully!")
       })
       .catch(error => console.log(error))
   }

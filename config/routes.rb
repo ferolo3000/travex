@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/dashboard'        => 'static_pages#dashboard'
   get '/login'            => 'static_pages#login'
+  get '/logout'            => 'static_pages#logout'
   get '/form'             => 'static_pages#form'
   get '/report'           => 'static_pages#report'   
   get '/receipts'         => 'static_pages#receipts' 
@@ -12,17 +13,19 @@ Rails.application.routes.draw do
 
     resources :users, only: [:create]
     resources :sessions, only: [:create, :destroy]
-    resources :expenses, only: [:index,:create, :show]
+    resources :expenses, only: [:index, :create, :show, :delete, :update]
 
-    get '/:user_id/expenses'         => 'expenses#index'
-    post '/expenses'        => 'expenses#create'
-    delete '/expenses/:id'  => 'expenses#destroy'
-    get '/authenticated'    => 'sessions#authenticated'
+    get     '/:user_id/expenses'    => 'expenses#index'
+    post    '/expenses'             => 'expenses#create'
+    put     '/expenses/:id'         => 'expenses#update'
+    delete  '/expenses/:id'         => 'expenses#destroy'
+    get     '/authenticated'        => 'sessions#authenticated'
 
     # USERS
     post '/users'         => 'users#create'
     # SESSIONS
     post '/sessions'      => 'sessions#create'
+    delete '/sessions'    => 'sessions#destroy'
   end
 
   # USERS

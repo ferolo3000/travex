@@ -32,7 +32,8 @@ class Dashboard extends React.Component {
       method: 'DELETE',
     }))
     .then(response => {
-      window.location = "/";
+      localStorage.clear();
+      window.location.href = '/logout';
     })
     .catch(error => console.log(error))
   }
