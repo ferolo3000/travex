@@ -1,4 +1,5 @@
 import React from 'react'
+import { handleErrors } from '@utils/fetchHelper';
 
 import './edit.scss';
 
@@ -11,14 +12,14 @@ class Edit extends React.Component {
       editable: false,
       file: null,
       expenses: {},
-      date: '',
-      merchantFer: '',
-      location: '',
-      amount: 0,
-      split: 1,
-      category: '',
-      payment_method: '',
-      note: '',
+      dateEditField: '',
+      merchantEditField: '',
+      locationEditField: '',
+      amountEditField: 0,
+      splitEditField: 1,
+      categoryEditField: '',
+      payment_methodEditField: '',
+      noteEditField: '',
       image_url:''
     }
     this.handleChange = this.handleChange.bind(this)
@@ -68,38 +69,60 @@ class Edit extends React.Component {
 
    handleUpdate = (event) => {
     event.preventDefault();
-    const data = { 
-      date: this.state.date,
-      merchant: this.state.merchant,
-      location: this.state.location,
-      amount: this.state.amount,
-      split: this.state.split,
-      category: this.state.category,
-      payment_method: this.state.payment_method,
-      note: this.state.note,
+    const expense = { 
+      date: this.state.dateEditField,
+      merchant: this.state.merchantEditField,
+      location: this.state.locationEditField,
+      amount: this.state.amountEditField,
+      split: this.state.splitEditField,
+      category: this.state.categoryEditField,
+      payment_method: this.state.payment_methodEditField,
+      note: this.state.noteEditField,
     };
 
     fetch(`/api/expenses/${ID}`, ({
       method: 'PUT',
-      body: JSON.stringify(data),
+      body: JSON.stringify(expense),
     }))
-      .then(handleErrors)
-      .then(data => {
-        console.log(data.success)
-        if (data.success) {
-          alert("Updated successfully!")
-        }
-      })
-      .catch((error) => {
-        console.log('Error:', error);
-      });
-  } 
+    .then(handleErrors)
+    .then(data => {
+      console.log(data.success)
+      if (data.success) {
+        alert("Updated successfully!")
+      }
+    })
+    .catch((error) => {
+    console.log('Error:', error);
+    });
+  }
 
   renderForm() {
     const { expenses } = this.state
     const { id, location, date, category, merchant, split, amount, payment_method, note, image_url } = expenses
-    let merchant1 =  this.state.editable ? <input  name="merchantFer" className="input-form" type="text" value={this.state.merchantFer } ref={merchant} onChange={this.handleForm} /> : <p className="input-form">{merchant}</p> 
-    console.log(this.state.editable)
+    let merchantEdit =  this.state.editable ? <input name="merchantEditField" className="input-form" type="text" defaultValue={merchant} onChange={this.handleForm} /> : <p className="input-text">{merchant}</p>
+    let dateEdit =  this.state.editable ? <input name="dateEditField" className="input-form" type="date" defaultValue={date} onChange={this.handleForm} /> : <p className="input-text">{date}</p> 
+    let locationEdit =  this.state.editable ? <input name="locationEditField" className="input-form" type="text" defaultValue={location} onChange={this.handleForm} /> : <p className="input-text">{location}</p> 
+    let amountEdit =  this.state.editable ? <input name="amountEditfield" min={0} step={0.01} className="input-form" type="number" defaultValue={amount} onChange={this.handleForm} /> : <p className="input-text">{amount}</p> 
+    let splitEdit =  this.state.editable ? <input name="splitEditField" className="input-form" min={1} type="number" defaultValue={split} onChange={this.handleForm} /> : <p className="input-text">{split}</p> 
+    let noteEdit =  this.state.editable ?<textarea className="text" onChange={this.handleForm} rows="2" defaultValue={note}></textarea> : <p className="input-text">{note}</p>
+    let categoryEdit =  this.state.editable ? 
+      <select className="category-options" id="categoryID" defaultValue={category}>
+        <option disabled>Select...</option>
+        <option value="Air Travel">✈ Air Travel</option>
+        <option value="Lodging">🏨 Lodging</option>
+        <option value="Meals & Entertainment">🍽 Meals & Entertainment</option>
+        <option value="Phone & Internet">📲 Phone & Internet</option>
+        <option value="Transportation">🚖 Transportation</option>
+        <option value="Other Expense">🧾 Other Expense</option>
+      </select> : <p className="input-text">{category}</p> 
+    let payment_methodEdit =  this.state.editable ? 
+      <select className="pay-options" id="paymentID" defaultValue={payment_method}>
+        <option disabled>Select...</option>
+        <option value="Cash">💵 Cash</option>
+        <option value="Credit Card">💳 Credit Card</option>
+        <option value="Other Payment Method">💰 Other Payment Method</option>
+      </select> : <p className="input-text">{payment_method}</p>  
+   
       return(
         <form key={id}>
           <div className="row">
@@ -107,58 +130,43 @@ class Edit extends React.Component {
               <div className="form-row">
                 <div className="form-group col-md-6">
                   <label className="label">Expense Date</label>
-                  <input className="input-form" type="date" value={date} onChange={this.handleForm} />
+                  {dateEdit}
                 </div>
                 <div className="form-group col-md-6">
                   <label className="label">Merchant</label>
-                  {merchant1}
+                  {merchantEdit}
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group col-md-5">
                   <label className="label">Location</label>
-                  <input className="input-form" type="text" value={location} onChange={this.handleForm} />
+                  {locationEdit}
                 </div>
                 <div className="form-group col-md-5">
                   <label className="label">Amount</label>
-                  <input className="input-form" type="number" min={0} step={0.01} value={amount} onChange={this.handleForm} />
+                  {amountEdit}
                 </div>
                 <div className="form-group col-md-2">
                   <label className="label">Split</label>
-                  <input className="input-form" type="number" min={1} value={split} onChange={this.handleForm} />
+                  {splitEdit}
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
                   <label forhtml="categoryID">Category</label>
-                  <select className="category-options" id="categoryID" value={category} onChange={this.handleCategory}>
-                    <option disabled>Select...</option>
-                    <option value="Air Travel">✈ Air Travel</option>
-                    <option value="Lodging">🏨 Lodging</option>
-                    <option value="Meals & Entertainment">🍽 Meals & Entertainment</option>
-                    <option value="Phone & Internet">📲 Phone & Internet</option>
-                    <option value="Transportation">🚖 Transportation</option>
-                    <option value="Other Expense">🧾 Other Expense</option>
-                  </select>
+                    {categoryEdit}
                 </div>
                 <div className="form-group col-md-6">
                   <label forhtml="paymentID">Payment Method</label>
-                  <select className="pay-options" id="paymentID" value={payment_method} onChange={this.handlePayment}>
-                    <option disabled>Select...</option>
-                    <option value="Cash">💵 Cash</option>
-                    <option value="Credit Card">💳 Credit Card</option>
-                    <option value="Other Payment Method">💰 Other Payment Method</option>
-                  </select>
+                    {payment_methodEdit}
                 </div>
               </div>
               <div className="form-group">
                 <label forhtml="noteID">Note</label>
-                <textarea className="text" id="noteID" rows="2" value={note} onChange={this.handleForm}></textarea>
+                {noteEdit}
               </div>
               <div className="text-center">
-              <button className="btn btn-sm btn-success" onClick={this.handleEdit}>{this.state.editable? 'Submit' : 'Edit'}</button>
-                <button className="button-form orange mr-5" type="submit">Edit</button>
-                <button className="button-form green mr-5" type="submit">Save</button>
+               {this.state.editable ? <button className="button-form green mr-5 pl-3 pr-3" type="submit" onClick={this.handleUpdate}>Submit</button> :  <button className="button-form green mr-5 pl-3 pr-3" onClick={this.handleEdit}>Edit</button>}
                 <button onClick={()=> {window.location.href='/dashboard'}} className="button-form red" type="button">Cancel</button>
               </div>
             </div>
@@ -176,10 +184,12 @@ class Edit extends React.Component {
     } 
 
   render() {
+    console.log(this.state.merchantEditField)
+    console.log(this.state.locationEditField)
     return (
     <div className="container">
       <div className="text-center mt-3">
-        <h2 className="title mb-2">New Expense</h2>
+        <h2 className="title mb-2">View Expense</h2>
       </div>
       
           {this.renderForm()}

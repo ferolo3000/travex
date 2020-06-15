@@ -26,7 +26,7 @@ class Form extends React.Component {
 
   handleChange(event) {
     this.setState({
-      file: URL.createObjectURL(event.target.files[0])
+      file: URL.createObjectURL(event.target.files[0]),
     })
   }
 
@@ -81,7 +81,7 @@ class Form extends React.Component {
       category: this.state.category,
       payment_method: this.state.payment_method,
       note: this.state.note,
-      image_url:this.state.image_url
+      image_url: this.state.file
     };
 
     fetch('/api/expenses', safeCredentials({
@@ -101,7 +101,8 @@ class Form extends React.Component {
             category: '',
             payment_method: '',
             note: '',
-            image_url:''
+            image_url:'',
+            file: null
           })
           alert("Created successfully!")
         }

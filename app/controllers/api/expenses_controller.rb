@@ -1,6 +1,6 @@
 module Api
   class ExpensesController < ApplicationController
-
+    skip_before_action :verify_authenticity_token
     def create
       token = cookies.signed[:travex_session_token]
       session = Session.find_by(token: token)

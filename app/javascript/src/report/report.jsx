@@ -104,7 +104,6 @@ class Report extends React.Component {
   }*/
 
   render() {
-    console.log(this.state.action)
 
     const { expenses, currentPage, itemPerPage, filterCategory, filterPayment } = this.state;
 
