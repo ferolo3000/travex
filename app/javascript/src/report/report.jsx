@@ -65,7 +65,7 @@ class Report extends React.Component {
       .then(response => {
         const itemIndex = this.state.expenses.findIndex(x => x.id === this.state.item)
         const updateExpenses = update(this.state.expenses, {
-          $splice: [[itemIndex, 1]]
+          $splice: [[itemIndex, 0]]
         })
         this.setState({
           expenses: updateExpenses
@@ -73,6 +73,7 @@ class Report extends React.Component {
         alert("deleted successfully!")
       })
       .catch(error => console.log(error))
+      window.location.reload(false)
   }
 
   handleClick(event) {
@@ -87,6 +88,7 @@ class Report extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({});
     fetch('/api/authenticated')
       .then(response => response.json())
       .then(data => {this.setState({
@@ -96,12 +98,6 @@ class Report extends React.Component {
         .then(response => response.json())
         .then(data => this.setState({ expenses: data.expenses }))
   }
-
-  /*componentDidMount() {
-    fetch('/api/expenses')
-    .then(response => response.json())
-    .then(data => this.setState({ expenses: data.expenses }))
-  }*/
 
   render() {
 
@@ -253,7 +249,7 @@ class Report extends React.Component {
             </div>
           </div>
           : <React.Fragment>
-                <Message message={"You don't have any expenses"}/>
+              <Message message={"You don't have any expenses"}/>
             </React.Fragment>}
         </div>
       </div>

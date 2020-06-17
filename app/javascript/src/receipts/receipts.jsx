@@ -15,29 +15,23 @@ class Receipts extends React.Component {
       this.handleFilter = this.handleFilter.bind(this);  
     }
 
-    componentDidMount() {
-      fetch('/api/authenticated')
-        .then(response => response.json())
-        .then(data => {this.setState({
-          user_id: data.user_id })
-          return fetch(`/api/${this.state.user_id}/expenses`)
-          })
-          .then(response => response.json())
-          .then(data => this.setState({ expenses: data.expenses }))
-    }
-
-    /*componentDidMount() {
-      fetch('/api/expenses')
+  componentDidMount() {
+    fetch('/api/authenticated')
+    .then(response => response.json())
+    .then(data => {this.setState({
+      user_id: data.user_id })
+      return fetch(`/api/${this.state.user_id}/expenses`)
+      })
       .then(response => response.json())
       .then(data => this.setState({ expenses: data.expenses }))
-    }*/
+  }
 
-    handleFilter = (event) => {
-      const {name, value} = event.target
-      this.setState({
-        [name]: value
-      })
-    };
+  handleFilter = (event) => {
+    const {name, value} = event.target
+    this.setState({
+      [name]: value
+    })
+  };
 
   renderReceitps() {
     // Logic for Data
@@ -45,11 +39,11 @@ class Receipts extends React.Component {
     let filterData;
 
     if(filterCategory == "All") {
-      filterData = expenses.filter(item => item.image !== null)
+      filterData = expenses.filter(item => item.image)
     }
 
     if(filterCategory !== "All") {
-      filterData = expenses.filter(item => item.category == filterCategory && item.image !== null)
+      filterData = expenses.filter(item => item.category == filterCategory && item.image)
     }
 
     if(filterData.length < 1 ) {
@@ -74,11 +68,11 @@ class Receipts extends React.Component {
                   </p>
                 </div>  
               </div>
-          )
-        }
+            )
+          }
+        )
       )
-    )
-  }
+    }
   }
 
   render() {
@@ -102,7 +96,6 @@ class Receipts extends React.Component {
           {this.renderReceitps()}
         </div>
       </div>
-      
     )
   }
 }    

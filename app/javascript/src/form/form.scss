@@ -17,12 +17,13 @@ h1, h2, h3, h4, h5, h5, h6, th {
   font-family: 'Raleway', sans-serif;
 }
 
-#brand {
-  color: $color-white;
-}
-
 .title {
   color: $color-red;
+}
+
+#logo {
+  text-decoration: none;
+  color: $color-purple;
 }
 
 

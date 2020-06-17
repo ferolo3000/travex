@@ -1,5 +1,5 @@
 import React from 'react'
-import { safeCredentials, handleErrors } from '@utils/fetchHelper';
+import { safeCredentialsForm, handleErrors } from '@utils/fetchHelper';
 
 import './form.scss';
 
@@ -23,13 +23,13 @@ class Form extends React.Component {
     this.handleForm = this.handleForm.bind(this)
     this.handleFilter = this.handleFilter.bind(this)
     this.createExpense = this.createExpense.bind(this);
+    this.clearForm = this.clearForm.bind(this);
   }
 
   handleChange(event) {
     this.setState({
       fileImg: URL.createObjectURL(event.target.files[0]),
       file: event.target.files[0],
-      
     })
   }
 
@@ -47,11 +47,27 @@ class Form extends React.Component {
     })
   };
 
+  clearForm = (event) => {
+    this.setState({
+      date: '',
+      merchant: '',
+      location: '',
+      amount: 0,
+      split: 1,
+      category: '',
+      payment_method: '',
+      note: '',
+      file: null,
+      fileImg: null
+    })
+  }
+
   createExpense = (e) => {
     e.preventDefault();
     //const image = this.myRef.files[0];
     const formData = new FormData()
-      formData.append('expense[image]', this.state.file)
+    {this.state.file !== null ? formData.set('expense[image]', this.state.file) : null}
+      //formData.append('expense[image]', this.state.file)
       formData.append('expense[date]', this.dateInput.value)
       formData.append('expense[merchant]', this.merchantInput.value)
       formData.append('expense[location]', this.locationInput.value)
@@ -61,7 +77,7 @@ class Form extends React.Component {
       formData.append('expense[payment_method]', this.payment_methodInput.value)
       formData.append('expense[note]', this.noteInput.value)
 
-    fetch('/api/expenses', safeCredentials({
+    fetch('/api/expenses', safeCredentialsForm({
       method: 'POST',
       //body: JSON.stringify(data),
       body: formData,
@@ -94,8 +110,12 @@ class Form extends React.Component {
 
   render() {
     return (
+      <React.Fragment>
+      <nav className="navbar navbar-light bg-light">
+        <a id="logo" className="nav-link logo-item" href="/dashboard">travex</a>
+      </nav>
       <div className="container">
-        <div className="text-center mt-3">
+        <div className="text-center mt-3">   
           <h2 className="title mb-2">New Expense</h2>
         </div>
         <form onSubmit={this.createExpense}>
@@ -166,11 +186,12 @@ class Form extends React.Component {
             </div>  
             <div className="group-btn">
               <button className="button-form green mr-5" type="submit">Create</button>
-              <button onClick={()=> {window.location.href='/dashboard'}} className="button-form red" type="button">Cancel</button>
+              <button onClick={this.clearForm} className="button-form red" type="button">Cancel</button>
             </div>
           </div>
         </form>
       </div>
+      </React.Fragment>  
     )
   }
 }

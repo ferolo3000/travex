@@ -12,20 +12,13 @@ class Edit extends React.Component {
       editable: false,
       file: null,
       expenses: {},
-      dateEditField: '',
-      merchantEditField: '',
-      locationEditField: '',
-      amountEditField: 0,
-      splitEditField: 1,
-      categoryEditField: '',
-      payment_methodEditField: '',
-      noteEditField: '',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleCategory = this.handleCategory.bind(this)
     this.handlePayment = this.handlePayment.bind(this)
     this.handleForm = this.handleForm.bind(this)
     this.handleEdit = this.handleEdit.bind(this)
+    this.handleCancel = this.handleCancel.bind(this)
   }
 
   componentDidMount() {
@@ -36,7 +29,7 @@ class Edit extends React.Component {
 
   handleChange(event) {
     this.setState({
-      file: URL.createObjectURL(event.target.files[0])
+      file: event.target.files[0],
     })
   }
 
@@ -61,51 +54,55 @@ class Edit extends React.Component {
     })
   };
 
+  handleCancel = (event) => {
+    event.preventDefault();
+    this.setState({ editable: false})
+   } 
+
   handleEdit = (event) => {
     event.preventDefault();
     this.setState({ editable: true})
-   }
+   } 
 
    handleUpdate = (event) => {
     event.preventDefault();
-    const expense = { 
-      date: this.state.dateEditField,
-      merchant: this.state.merchantEditField,
-      location: this.state.locationEditField,
-      amount: this.state.amountEditField,
-      split: this.state.splitEditField,
-      category: this.state.categoryEditField,
-      payment_method: this.state.payment_methodEditField,
-      note: this.state.noteEditField,
-    };
+    const formData = new FormData()
+      {this.state.file !== null ? formData.set('expense[image]', this.state.file) : null}
+      formData.set('expense[date]', this.dateInput.value)
+      formData.set('expense[merchant]', this.merchantInput.value)
+      formData.set('expense[location]', this.locationInput.value)
+      formData.set('expense[amount]', this.amountInput.value)
+      formData.set('expense[split]', this.splitInput.value)
+      formData.set('expense[category]', this.categoryInput.value)
+      formData.set('expense[payment_method]', this.payment_methodInput.value)
+      formData.set('expense[note]', this.noteInput.value)
+      formData.set('expense[id]', ID)
 
     fetch(`/api/expenses/${ID}`, ({
       method: 'PUT',
-      body: JSON.stringify(expense),
+      body: formData,
+      contentType: false,
+      processData: false,
     }))
     .then(handleErrors)
-    .then(data => {
-      console.log(data.success)
-      if (data.success) {
-        alert("Updated successfully!")
-      }
-    })
     .catch((error) => {
     console.log('Error:', error);
     });
+    alert("Updated successfully!")
+    window.location.reload(false)
   }
 
   renderForm() {
     const { expenses } = this.state
     const { id, location, date, category, merchant, split, amount, payment_method, note, image } = expenses
-    let merchantEdit =  this.state.editable ? <input name="merchantEditField" className="input-form" type="text" defaultValue={merchant} onChange={this.handleForm} /> : <p className="input-text">{merchant}</p>
-    let dateEdit =  this.state.editable ? <input name="dateEditField" className="input-form" type="date" defaultValue={date} onChange={this.handleForm} /> : <p className="input-text">{date}</p> 
-    let locationEdit =  this.state.editable ? <input name="locationEditField" className="input-form" type="text" defaultValue={location} onChange={this.handleForm} /> : <p className="input-text">{location}</p> 
-    let amountEdit =  this.state.editable ? <input name="amountEditfield" min={0} step={0.01} className="input-form" type="number" defaultValue={amount} onChange={this.handleForm} /> : <p className="input-text">{amount}</p> 
-    let splitEdit =  this.state.editable ? <input name="splitEditField" className="input-form" min={1} type="number" defaultValue={split} onChange={this.handleForm} /> : <p className="input-text">{split}</p> 
-    let noteEdit =  this.state.editable ?<textarea className="text" onChange={this.handleForm} rows="2" defaultValue={note}></textarea> : <p className="input-text">{note}</p>
+    let merchantEdit =  this.state.editable ? <input ref={(input) => this.merchantInput = input} name="merchant" className="input-form" type="text" defaultValue={merchant} onChange={this.handleForm} /> : <p className="input-text">{merchant}</p>
+    let dateEdit =  this.state.editable ? <input ref={(input) => this.dateInput = input} name="date" className="input-form" type="date" defaultValue={date} onChange={this.handleForm} /> : <p className="input-text">{date}</p> 
+    let locationEdit =  this.state.editable ? <input ref={(input) => this.locationInput = input} name="location" className="input-form" type="text" defaultValue={location} onChange={this.handleForm} /> : <p className="input-text">{location}</p> 
+    let amountEdit =  this.state.editable ? <input ref={(input) => this.amountInput = input} name="amount" min={0} step={0.01} className="input-form" type="number" defaultValue={amount} onChange={this.handleForm} /> : <p className="input-text">{amount}</p> 
+    let splitEdit =  this.state.editable ? <input ref={(input) => this.splitInput = input} name="split" className="input-form" min={1} type="number" defaultValue={split} onChange={this.handleForm} /> : <p className="input-text">{split}</p> 
+    let noteEdit =  this.state.editable ?<textarea ref={(input) => this.noteInput = input} className="text" onChange={this.handleForm} rows="2" defaultValue={note}></textarea> : <p className="input-text">{note}</p>
     let categoryEdit =  this.state.editable ? 
-      <select className="category-options" id="categoryID" defaultValue={category}>
+      <select ref={(input) => this.categoryInput = input} className="category-options" id="categoryID" defaultValue={category}>
         <option disabled>Select...</option>
         <option value="Air Travel">✈ Air Travel</option>
         <option value="Lodging">🏨 Lodging</option>
@@ -115,12 +112,13 @@ class Edit extends React.Component {
         <option value="Other Expense">🧾 Other Expense</option>
       </select> : <p className="input-text">{category}</p> 
     let payment_methodEdit =  this.state.editable ? 
-      <select className="pay-options" id="paymentID" defaultValue={payment_method}>
+      <select ref={(input) => this.payment_methodInput = input} className="pay-options" id="paymentID" defaultValue={payment_method}>
         <option disabled>Select...</option>
         <option value="Cash">💵 Cash</option>
         <option value="Credit Card">💳 Credit Card</option>
         <option value="Other Payment Method">💰 Other Payment Method</option>
       </select> : <p className="input-text">{payment_method}</p>  
+    let imgEdit = this.state.editable ? <input type="file" accept="image/*" name="image" onChange={this.handleChange} className="form-control-file" id="image-form" /> : null
    
       return(
         <form key={id}>
@@ -166,14 +164,15 @@ class Edit extends React.Component {
               </div>
               <div className="text-center">
                {this.state.editable ? <button className="button-form green mr-5 pl-3 pr-3" type="submit" onClick={this.handleUpdate}>Submit</button> :  <button className="button-form green mr-5 pl-3 pr-3" onClick={this.handleEdit}>Edit</button>}
-                <button onClick={()=> {window.location.href='/dashboard'}} className="button-form red" type="button">Cancel</button>
+                <button onClick={this.handleCancel} className="button-form red" type="button">Cancel</button>
               </div>
             </div>
             <div className="col-lg-4 col-md-12">
               <div className="card mt-3 mb-3">
                 <div className="card-body">
                   <h3>Receipt</h3>
-                  <img className="responsive" src={image} />
+                    <img className="responsive" src={image} />
+                    {imgEdit}
                 </div>
               </div>
             </div>
@@ -183,21 +182,20 @@ class Edit extends React.Component {
     } 
 
   render() {
-    console.log(this.state.merchantEditField)
-    console.log(this.state.locationEditField)
     return (
-    <div className="container">
-      <div className="text-center mt-3">
-        <h2 className="title mb-2">View Expense</h2>
-      </div>
-      
-          {this.renderForm()}
-        
-      
-    </div>
+      <React.Fragment>
+        <nav className="navbar navbar-light bg-light">
+          <a id="logo" className="nav-link logo-item" href="/dashboard">travex</a>
+        </nav>
+        <div className="container">
+          <div className="text-center mt-3">
+            <h2 className="title mb-2">View Expense</h2>
+          </div>
+              {this.renderForm()}
+        </div>
+      </React.Fragment>
     )
   }
-
 }
 
 export default Edit
