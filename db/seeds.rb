@@ -21,7 +21,7 @@ expenses = Expense.create([
     split: 2,
     payment_method: 'Credit Card',
     note: 'Hotel for Reactjs Conference in New York',
-    image_url: 'https://www.invoicesimple.com/wp-content/uploads/2018/05/Screen-Shot-2018-05-30-at-11.08.40-AM.png',
+    image: 'https://www.invoicesimple.com/wp-content/uploads/2018/05/Screen-Shot-2018-05-30-at-11.08.40-AM.png',
     user: User.first
   },
   {
@@ -33,7 +33,7 @@ expenses = Expense.create([
     split: 1,
     payment_method: 'Cash',
     note: 'Restaurant close to the hotel',
-    image_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/ReceiptSwiss.jpg/170px-ReceiptSwiss.jpg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/ReceiptSwiss.jpg/170px-ReceiptSwiss.jpg',
     user: User.first
   },
   {
@@ -45,7 +45,7 @@ expenses = Expense.create([
     split: 1,
     payment_method: 'Credit Card',
     note: 'Restaurant close to the hotel',
-    image_url: 'https://previews.123rf.com/images/latkun/latkun1903/latkun190300045/119689770-realistic-paper-shop-receipt-with-barcode-vector-shop-terminal-vector.jpg',
+    image: 'https://previews.123rf.com/images/latkun/latkun1903/latkun190300045/119689770-realistic-paper-shop-receipt-with-barcode-vector-shop-terminal-vector.jpg',
     user: User.first
   },
   {
@@ -57,7 +57,7 @@ expenses = Expense.create([
     split: 1,
     payment_method: 'Cash',
     note: 'Bus to the airport',
-    image_url: '',
+    image: '',
     user: User.second
   },
   {
@@ -69,7 +69,7 @@ expenses = Expense.create([
     split: 1,
     payment_method: 'Other Payment Method',
     note: 'Taxi to the airport',
-    image_url: 'https://bloximages.chicago2.vip.townnews.com/dailylocal.com/content/tncms/assets/v3/editorial/d/77/d7745b82-1c1f-11e9-b3bb-032816e700e0/5c43798f9d036.image.jpg',
+    image: 'https://bloximages.chicago2.vip.townnews.com/dailylocal.com/content/tncms/assets/v3/editorial/d/77/d7745b82-1c1f-11e9-b3bb-032816e700e0/5c43798f9d036.image.jpg',
     user: User.second
   },
   {
@@ -81,7 +81,7 @@ expenses = Expense.create([
     split: 1,
     payment_method: 'Other Payment Method',
     note: 'Taxi to the hotel',
-    image_url: 'https://ferolobucket.s3.amazonaws.com/taxi.png',
+    image: 'https://ferolobucket.s3.amazonaws.com/taxi.png',
     user: User.second
   },
   {
@@ -93,7 +93,7 @@ expenses = Expense.create([
     split: 1,
     payment_method: 'Credit Card',
     note: 'Flight Tickets',
-    image_url: 'https://templates.invoicehome.com/receipt-template-us-classic-white-750px.png',
+    image: 'https://templates.invoicehome.com/receipt-template-us-classic-white-750px.png',
     user: User.second
   },
   {
@@ -105,7 +105,7 @@ expenses = Expense.create([
     split: 1,
     payment_method: 'Credit Card',
     note: 'Internet',
-    image_url: '',
+    image: '',
     user: User.second
   },
 ])

@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2020_06_15_084419) do
     t.integer "split"
     t.string "payment_method"
     t.string "note"
-    t.string "image_url"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

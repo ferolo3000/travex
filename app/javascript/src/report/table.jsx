@@ -5,7 +5,7 @@ const RenderTable = ({ data,onChange, checked }) => {
 
     const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date))
     return sorted.map((expense, index) => {
-       const { id, location, date, category, merchant, amount, payment_method, image_url } = expense 
+       const { id, location, date, category, merchant, amount, payment_method, image } = expense 
 
        return (
           <tr key={id}>
@@ -26,8 +26,8 @@ const RenderTable = ({ data,onChange, checked }) => {
              <td>{merchant}</td>
              <td className="amount">{amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
              <td>{payment_method}</td>
-             { image_url == '' ? 
-             <td></td> : <td><Receipt image={image_url} category={category} amount={amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })} date={date} /></td> }
+             { image == null ? 
+             <td></td> : <td><Receipt image={image} category={category} amount={amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })} date={date} /></td> }
              
           </tr>
        )

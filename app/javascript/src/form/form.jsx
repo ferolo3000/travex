@@ -6,7 +6,9 @@ import './form.scss';
 class Form extends React.Component {
   constructor(props){
     super(props)
+    this.myRef = React.createRef()
     this.state = {
+      fileImg: null,
       file: null,
       date: '',
       merchant: '',
@@ -16,7 +18,6 @@ class Form extends React.Component {
       category: '',
       payment_method: '',
       note: '',
-      image_url:''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleForm = this.handleForm.bind(this)
@@ -26,7 +27,9 @@ class Form extends React.Component {
 
   handleChange(event) {
     this.setState({
-      file: URL.createObjectURL(event.target.files[0]),
+      fileImg: URL.createObjectURL(event.target.files[0]),
+      file: event.target.files[0],
+      
     })
   }
 
@@ -44,49 +47,26 @@ class Form extends React.Component {
     })
   };
 
-  /*createExpense = (event) => {
-    event.preventDefault();
-    const data = { 
-      date: this.state.date,
-      merchant: this.state.merchant,
-      location: this.state.location,
-      amount: this.state.amount,
-      split: this.state.split,
-      category: this.state.category,
-      payment_method: this.state.payment_method,
-      note: this.state.note,
-    };
-
-    fetch('/api/expenses', safeCredentials({
-      method: 'POST',
-      body: JSON.stringify(data),
-    }))
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.log('Error:', error);
-      });
-  }*/
-
   createExpense = (e) => {
     e.preventDefault();
-    const data = { 
-      date: this.state.date,
-      merchant: this.state.merchant,
-      location: this.state.location,
-      amount: this.state.amount,
-      split: this.state.split,
-      category: this.state.category,
-      payment_method: this.state.payment_method,
-      note: this.state.note,
-      image_url: this.state.file
-    };
+    //const image = this.myRef.files[0];
+    const formData = new FormData()
+      formData.append('expense[image]', this.state.file)
+      formData.append('expense[date]', this.dateInput.value)
+      formData.append('expense[merchant]', this.merchantInput.value)
+      formData.append('expense[location]', this.locationInput.value)
+      formData.append('expense[amount]', this.amountInput.value)
+      formData.append('expense[split]', this.splitInput.value)
+      formData.append('expense[category]', this.categoryInput.value)
+      formData.append('expense[payment_method]', this.payment_methodInput.value)
+      formData.append('expense[note]', this.noteInput.value)
 
     fetch('/api/expenses', safeCredentials({
       method: 'POST',
-      body: JSON.stringify(data),
+      //body: JSON.stringify(data),
+      body: formData,
+      contentType: false,
+      processData: false,
     }))
       .then(handleErrors)
       .then(data => {
@@ -101,8 +81,8 @@ class Form extends React.Component {
             category: '',
             payment_method: '',
             note: '',
-            image_url:'',
-            file: null
+            file: null,
+            fileImg: null
           })
           alert("Created successfully!")
         }
@@ -124,31 +104,31 @@ class Form extends React.Component {
               <div className="form-row">
                 <div className="form-group col-md-6">
                   <label className="label">Expense Date</label>
-                  <input className="input-form" type="date" name="date" value={this.state.date} onChange={this.handleForm} required />
+                  <input className="input-form" type="date" name="date" value={this.state.date} onChange={this.handleForm} ref={(input) => this.dateInput = input}  required />
                 </div>
                 <div className="form-group col-md-6">
                   <label className="label">Merchant</label>
-                  <input className="input-form" type="text" name="merchant" value={this.state.merchant} onChange={this.handleForm} required />
+                  <input className="input-form" type="text" name="merchant" value={this.state.merchant} onChange={this.handleForm} ref={(input) => this.merchantInput = input} required />
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group col-md-5">
                   <label className="label">Location</label>
-                  <input className="input-form" type="text" name="location" value={this.state.location} onChange={this.handleForm} required />
+                  <input className="input-form" type="text" name="location" value={this.state.location} onChange={this.handleForm} ref={(input) => this.locationInput = input}  required />
                 </div>
                 <div className="form-group col-md-5">
                   <label className="label">Amount</label>
-                  <input className="input-form" type="number" min={0} step={0.01} name="amount" value={this.state.amount} onChange={this.handleForm} required />
+                  <input className="input-form" type="number" min={0} step={0.01} name="amount" value={this.state.amount} onChange={this.handleForm} ref={(input) => this.amountInput = input}  required />
                 </div>
                 <div className="form-group col-md-2">
                   <label className="label">Split</label>
-                  <input className="input-form" type="number" min={1} name="split" value={this.state.split} onChange={this.handleForm} required />
+                  <input className="input-form" type="number" min={1} name="split" value={this.state.split} onChange={this.handleForm} ref={(input) => this.splitInput = input}  required />
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
                   <label forhtml="categoryID">Category</label>
-                  <select className="category-options" id="categoryID" name="category" value={this.state.category} onChange={this.handleFilter} required>
+                  <select className="category-options" id="categoryID" name="category" value={this.state.category} onChange={this.handleFilter} ref={(input) => this.categoryInput = input}  required>
                     <option>Select...</option>
                     <option value="Air Travel">✈ Air Travel</option>
                     <option value="Lodging">🏨 Lodging</option>
@@ -160,7 +140,7 @@ class Form extends React.Component {
                 </div>
                 <div className="form-group col-md-6">
                   <label forhtml="paymentID">Payment Method</label>
-                  <select className="pay-options" id="paymentID" name="payment_method" value={this.state.payment_method} onChange={this.handleFilter} required>
+                  <select className="pay-options" id="paymentID" name="payment_method" value={this.state.payment_method} onChange={this.handleFilter} ref={(input) => this.payment_methodInput = input}  required>
                     <option>Select...</option>
                     <option value="Cash">💵 Cash</option>
                     <option value="Credit Card">💳 Credit Card</option>
@@ -170,7 +150,7 @@ class Form extends React.Component {
               </div>
               <div className="form-group">
                 <label forhtml="noteID">Note</label>
-                <textarea className="text" id="noteID" rows="2" name="note" value={this.state.note} onChange={this.handleForm}></textarea>
+                <textarea className="text" id="noteID" rows="2" name="note" value={this.state.note} onChange={this.handleForm} ref={(input) => this.noteInput = input} ></textarea>
               </div>
             </div>
             <div className="col-lg-4 col-md-12">
@@ -178,8 +158,8 @@ class Form extends React.Component {
                 <div className="card-body">
                   <h3>Receipt</h3>
                   <div className="form-group">
-                    <img className="img-thumbnail" src={this.state.file} />
-                    <input type="file" onChange={this.handleChange} className="form-control-file" id="image-form" />
+                    <img className="img-thumbnail" id="img-select" src={this.state.fileImg} />
+                    <input type="file" accept="image/*" name="image" onChange={this.handleChange} className="form-control-file" id="image-form" ref={this.myRef} />
                   </div>
                 </div>
               </div>

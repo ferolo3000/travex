@@ -45,11 +45,11 @@ class Receipts extends React.Component {
     let filterData;
 
     if(filterCategory == "All") {
-      filterData = expenses.filter(item => item.image_url.length > 0)
+      filterData = expenses.filter(item => item.image !== null)
     }
 
     if(filterCategory !== "All") {
-      filterData = expenses.filter(item => item.category == filterCategory && item.image_url.length > 0)
+      filterData = expenses.filter(item => item.category == filterCategory && item.image !== null)
     }
 
     if(filterData.length < 1 ) {
@@ -60,12 +60,12 @@ class Receipts extends React.Component {
       )
     } else {
       return(  filterData.map((expense) => {
-        const { id, location, date, category, amount, image_url } = expense 
+        const { id, location, date, category, amount, image } = expense 
 
           return (
               <div className="col-lg-4 col-md-6 card" key={id}> 
                 <p className="main-text mt-2">{category}</p>
-                <a href={`/expenses/${id}`}><img className="responsive card-img-top" src={image_url} /></a>
+                <a href={`/expenses/${id}`}><img className="responsive card-img-top" src={image} /></a>
                 <div className="card-body">
                   <p className="secondary-text">  
                       <span className="text"> {location} | </span> 

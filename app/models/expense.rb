@@ -3,7 +3,7 @@ class Expense < ApplicationRecord
   has_one_attached :image
 
   validates :location, presence: true, length: { maximum: 100 }
-  validates :note, presence: true, length: { maximum: 2000 }
+  validates :note, presence: true, allow_blank: true, length: { maximum: 2000 }
   validates :category, presence: true, length: { maximum: 200 }
   validates :payment_method, presence: true, length: { maximum: 200 }
   validates :amount, presence: true, numericality: { only_float: true, greater_than: 0 }

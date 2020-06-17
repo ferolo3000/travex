@@ -20,7 +20,6 @@ class Edit extends React.Component {
       categoryEditField: '',
       payment_methodEditField: '',
       noteEditField: '',
-      image_url:''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleCategory = this.handleCategory.bind(this)
@@ -98,7 +97,7 @@ class Edit extends React.Component {
 
   renderForm() {
     const { expenses } = this.state
-    const { id, location, date, category, merchant, split, amount, payment_method, note, image_url } = expenses
+    const { id, location, date, category, merchant, split, amount, payment_method, note, image } = expenses
     let merchantEdit =  this.state.editable ? <input name="merchantEditField" className="input-form" type="text" defaultValue={merchant} onChange={this.handleForm} /> : <p className="input-text">{merchant}</p>
     let dateEdit =  this.state.editable ? <input name="dateEditField" className="input-form" type="date" defaultValue={date} onChange={this.handleForm} /> : <p className="input-text">{date}</p> 
     let locationEdit =  this.state.editable ? <input name="locationEditField" className="input-form" type="text" defaultValue={location} onChange={this.handleForm} /> : <p className="input-text">{location}</p> 
@@ -174,7 +173,7 @@ class Edit extends React.Component {
               <div className="card mt-3 mb-3">
                 <div className="card-body">
                   <h3>Receipt</h3>
-                  <img className="responsive" src={image_url} />
+                  <img className="responsive" src={image} />
                 </div>
               </div>
             </div>

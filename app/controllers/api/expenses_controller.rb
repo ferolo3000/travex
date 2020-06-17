@@ -62,7 +62,7 @@ module Api
     private
 
    def expense_params
-     params.require(:expense).permit(:date, :merchant, :location, :amount, :split, :category, :payment_method, :note, :image_url)
+     params.require(:expense).permit(:date, :merchant, :location, :amount, :split, :category, :payment_method, :note, :image)
    end
   end
 end

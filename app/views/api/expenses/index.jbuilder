@@ -9,6 +9,6 @@ json.expenses do
       json.category expense.category
       json.payment_method expense.payment_method
       json.note expense.note
-      json.image_url expense.image_url
+      json.image url_for(expense.image) if expense.image.attached?
     end
 end

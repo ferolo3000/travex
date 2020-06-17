@@ -9,7 +9,6 @@ class CreateExpenses < ActiveRecord::Migration[5.2]
       t.integer :split
       t.string :payment_method
       t.string :note
-      t.string :image_url
 
       t.belongs_to :user, index: true, foreign_key: true
 
