@@ -23,12 +23,6 @@ class Table extends React.Component {
         .then(data => this.setState({ expenses: data.expenses }))
   }
 
- /* componentDidMount() {
-    fetch('/api/expenses')
-    .then(response => response.json())
-    .then(data => this.setState({ expenses: data.expenses }))
-  }*/
-
   renderTableData() {
     const data = this.state.expenses
     const size = 5
@@ -39,14 +33,13 @@ class Table extends React.Component {
           <tr key={id}>
              <td>{date}</td>
              <td>{location}</td>
-             <td>{category}</td>
+             <td><a href={`/expenses/${id}`}>{category}</a></td>
              <td className="amount">{amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
              <td>{payment_method}</td>
           </tr>
        )
     })
  }
-
 
     render(){
       if(this.state.expenses.length > 0) {

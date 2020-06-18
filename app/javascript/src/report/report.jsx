@@ -1,4 +1,5 @@
 import React from 'react';
+import Layout from '../dashboard/layout'
 import Message from "./message"
 import Category from "./category"
 import Payment from "./payment"
@@ -182,6 +183,7 @@ class Report extends React.Component {
 //----------------------End Action Options------------------//
 
     return (
+      <Layout>
       <div className="container">
         <div className="text-center mt-3">
             <h2 className="title mb-2">Expenses</h2>
@@ -215,6 +217,7 @@ class Report extends React.Component {
                   <th scope="col">Merchant</th>
                   <th scope="col">Amount</th>
                   <th scope="col">Payment Method</th>
+                  <th scope="col">Note</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
@@ -253,6 +256,7 @@ class Report extends React.Component {
             </React.Fragment>}
         </div>
       </div>
+      </Layout>
     )
   }
 

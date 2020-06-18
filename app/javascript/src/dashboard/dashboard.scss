@@ -17,11 +17,19 @@ h1, h2, h3, h4, h5, h5, h6, th {
   font-family: 'Raleway', sans-serif;
 }
 
+.container {
+  max-width: 1000px !important;
+}
+
 #brand {
   color: $color-white;
 }
 
 .title {
+  color: $color-red;
+}
+
+.icon, .icon-name {
   color: $color-red;
 }
 
@@ -112,9 +120,7 @@ h1, h2, h3, h4, h5, h5, h6, th {
     display: inline-block;
     vertical-align: top;
     max-width: 100%;
-
     overflow-x: auto;
-
     // optional - looks better for small cell values
     white-space: nowrap;
 
@@ -128,7 +134,7 @@ h1, h2, h3, h4, h5, h5, h6, th {
   }
 
   .rtable th {
-    font-size: 15px;
+    font-size: 12px;
     text-align: left;
   }
 
@@ -167,7 +173,7 @@ h1, h2, h3, h4, h5, h5, h6, th {
     background-image: none !important;
     // border-collapse is no longer active
     border-left: 0;
-    font-size: 15px;
+    font-size: 12px;
   }
 
   // border-collapse is no longer active
@@ -192,7 +198,9 @@ h1, h2, h3, h4, h5, h5, h6, th {
 }
 
 @media only screen and (max-width: 1024px) {
-
+  .container {
+    max-width: 540px !important;
+  }
 
   #filter-btn, #add-btn {
     margin-top: 2rem;
@@ -210,7 +218,8 @@ th {
 }
 
 td {
-  color: $color-black;
+  color: $color-shadow;
+  font-size: 0.9rem;
 }
 
 .amount {
@@ -284,11 +293,16 @@ td {
 
 .category-txt {
   font-size: 1rem;
+  color: #1681FF;
 }
 
 .text-count {
   color: $color-green;
   font-weight: 600;
+}
+
+.card-link {
+  cursor: pointer;
 }
 
 

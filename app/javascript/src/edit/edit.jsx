@@ -1,4 +1,6 @@
 import React from 'react'
+import Layout from '../dashboard/layout'
+import cities from '@utils/cities';
 import { handleErrors } from '@utils/fetchHelper';
 
 import './edit.scss';
@@ -93,11 +95,14 @@ class Edit extends React.Component {
   }
 
   renderForm() {
+    const sorted = cities.sort((a,b) => (a.city > b.city) ? 1 : ((b.city > a.city) ? -1 : 0)); 
     const { expenses } = this.state
     const { id, location, date, category, merchant, split, amount, payment_method, note, image } = expenses
     let merchantEdit =  this.state.editable ? <input ref={(input) => this.merchantInput = input} name="merchant" className="input-form" type="text" defaultValue={merchant} onChange={this.handleForm} /> : <p className="input-text">{merchant}</p>
     let dateEdit =  this.state.editable ? <input ref={(input) => this.dateInput = input} name="date" className="input-form" type="date" defaultValue={date} onChange={this.handleForm} /> : <p className="input-text">{date}</p> 
-    let locationEdit =  this.state.editable ? <input ref={(input) => this.locationInput = input} name="location" className="input-form" type="text" defaultValue={location} onChange={this.handleForm} /> : <p className="input-text">{location}</p> 
+    let locationEdit =  this.state.editable ? <select className="category-options" id="locationID" name="location" defaultValue={location} onChange={this.handleForm} ref={(input) => this.locationInput = input}>
+    {sorted.map(city => <option key={city.id} value={city.city}>{city.city}</option>)}
+    </select> : <p className="input-text">{location}</p> 
     let amountEdit =  this.state.editable ? <input ref={(input) => this.amountInput = input} name="amount" min={0} step={0.01} className="input-form" type="number" defaultValue={amount} onChange={this.handleForm} /> : <p className="input-text">{amount}</p> 
     let splitEdit =  this.state.editable ? <input ref={(input) => this.splitInput = input} name="split" className="input-form" min={1} type="number" defaultValue={split} onChange={this.handleForm} /> : <p className="input-text">{split}</p> 
     let noteEdit =  this.state.editable ?<textarea ref={(input) => this.noteInput = input} className="text" onChange={this.handleForm} rows="2" defaultValue={note}></textarea> : <p className="input-text">{note}</p>
@@ -180,20 +185,16 @@ class Edit extends React.Component {
         </form>
       )
     } 
-
   render() {
     return (
-      <React.Fragment>
-        <nav className="navbar navbar-light bg-light">
-          <a id="logo" className="nav-link logo-item" href="/dashboard">travex</a>
-        </nav>
+      <Layout >
         <div className="container">
-          <div className="text-center mt-3">
-            <h2 className="title mb-2">View Expense</h2>
+          <div className="text-center mt-3">   
+            <h2 className="title mb-2">Expense</h2>
           </div>
-              {this.renderForm()}
+        {this.renderForm()}
         </div>
-      </React.Fragment>
+      </Layout>
     )
   }
 }

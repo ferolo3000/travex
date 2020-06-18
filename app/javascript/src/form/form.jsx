@@ -1,5 +1,7 @@
 import React from 'react'
+import Layout from '../dashboard/layout'
 import { safeCredentialsForm, handleErrors } from '@utils/fetchHelper';
+import cities from '@utils/cities';
 
 import './form.scss';
 
@@ -24,6 +26,7 @@ class Form extends React.Component {
     this.handleFilter = this.handleFilter.bind(this)
     this.createExpense = this.createExpense.bind(this);
     this.clearForm = this.clearForm.bind(this);
+    this.handleLocation = this.handleLocation.bind(this);
   }
 
   handleChange(event) {
@@ -41,6 +44,13 @@ class Form extends React.Component {
   };
 
   handleFilter = (event) => {
+    const {name, value} = event.target
+    this.setState({
+      [name]: value
+    })
+  };
+
+  handleLocation = (event) => {
     const {name, value} = event.target
     this.setState({
       [name]: value
@@ -109,11 +119,9 @@ class Form extends React.Component {
   }
 
   render() {
+    const sorted = cities.sort((a,b) => (a.city > b.city) ? 1 : ((b.city > a.city) ? -1 : 0)); 
     return (
-      <React.Fragment>
-      <nav className="navbar navbar-light bg-light">
-        <a id="logo" className="nav-link logo-item" href="/dashboard">travex</a>
-      </nav>
+      <Layout logOut={this.handleLogout}>
       <div className="container">
         <div className="text-center mt-3">   
           <h2 className="title mb-2">New Expense</h2>
@@ -134,7 +142,9 @@ class Form extends React.Component {
               <div className="form-row">
                 <div className="form-group col-md-5">
                   <label className="label">Location</label>
-                  <input className="input-form" type="text" name="location" value={this.state.location} onChange={this.handleForm} ref={(input) => this.locationInput = input}  required />
+                  <select className="category-options" id="locationID" name="location" value={this.state.location} onChange={this.handleLocation} ref={(input) => this.locationInput = input}>
+                  {sorted.map(city => <option key={city.id} value={city.city}>{city.city}</option>)}
+                  </select>
                 </div>
                 <div className="form-group col-md-5">
                   <label className="label">Amount</label>
@@ -191,7 +201,7 @@ class Form extends React.Component {
           </div>
         </form>
       </div>
-      </React.Fragment>  
+      </Layout>  
     )
   }
 }
