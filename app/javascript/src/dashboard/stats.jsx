@@ -1,7 +1,7 @@
 import React from 'react';
 import cities from '@utils/cities';
 import Collapse from 'react-bootstrap/Collapse'
-import Button from 'react-bootstrap/button';
+import Button from 'react-bootstrap/Button'
 import StatsTable from './statsTable'
 
 import './dashboard.scss';

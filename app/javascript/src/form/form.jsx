@@ -21,6 +21,7 @@ class Form extends React.Component {
       payment_method: '',
       note: '',
     }
+    
     this.handleChange = this.handleChange.bind(this)
     this.handleForm = this.handleForm.bind(this)
     this.handleFilter = this.handleFilter.bind(this)
