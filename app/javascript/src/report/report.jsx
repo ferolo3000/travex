@@ -165,7 +165,7 @@ class Report extends React.Component {
           <div className="form-group col-lg-8 col-md-8">
             <select className="category-options" id="categoryID" value={this.state.action} onChange={this.handleAction}>
               <option value="" disabled>Actions</option>
-              <option value="edit">✏  Edit/View</option>
+              <option value="submit">📤  Submit</option>
               <option value="delete">🗑  Delete</option>
             </select>
           </div>

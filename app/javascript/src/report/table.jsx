@@ -22,7 +22,7 @@ const RenderTable = ({ data, onChange, checked }) => {
              </td>
              <td>{date}</td>
              <td>{location}</td>
-             <td>{category}</td>
+             <td><a href={`/expenses/${id}`}>{category}</a></td>
              <td>{merchant}</td>
              <td className="amount">{amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
              <td>{payment_method}</td>
