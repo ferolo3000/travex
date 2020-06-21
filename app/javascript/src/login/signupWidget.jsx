@@ -10,6 +10,7 @@ class SignupWidget extends React.Component {
       username: '',
       email: '',
       password: '',
+      role: '',
       error: '',
     }
     this.handleChange = this.handleChange.bind(this);
@@ -36,6 +37,7 @@ class SignupWidget extends React.Component {
           username: this.state.username,
           email: this.state.email,
           password: this.state.password,
+          role: this.state.role
         }
       })
     }))
@@ -101,6 +103,13 @@ class SignupWidget extends React.Component {
               value={this.state.username}
               onChange={this.handleChange}
               required/>
+          </label>
+          <label>
+            <select value={this.state.role} name="role" onChange={this.handleChange} required>
+              <option>Role</option>
+              <option value="user">User</option>
+              <option value="aprprover">Approver</option>
+            </select>
           </label>
           <label className="mb-3">
             <input type="password" placeholder="Password"

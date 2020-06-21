@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 users = User.create([
-  { username: 'Tess', email: 'Tess@test.com', password: 'password' },
-  { username: 'Marcus', email: 'Marcus@test.com', password: 'password' },
+  { username: 'Tess', email: 'Tess@test.com', password: 'password', role: 'approver' },
+  { username: 'Marcus', email: 'Marcus@test.com', password: 'password', role: 'user' },
 ])
 
 expenses = Expense.create([
