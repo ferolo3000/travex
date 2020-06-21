@@ -8,5 +8,6 @@ json.expense do
     json.category @expense.category
     json.payment_method @expense.payment_method
     json.note @expense.note
+    json.status @expense.status
     json.image url_for(@expense.image) if @expense.image.attached?
 end
