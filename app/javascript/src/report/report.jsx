@@ -5,7 +5,7 @@ import Category from "./category"
 import Payment from "./payment"
 import RenderTable from "./table"
 import update from 'immutability-helper'
-import { safeCredentials } from '@utils/fetchHelper';
+import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 import './report.scss';
 
@@ -56,7 +56,22 @@ class Report extends React.Component {
   };
 
   handleOnClickAction = () => {
-    window.location = `/expenses/${this.state.item}`;
+    //window.location = `/expenses/${this.state.item}`;
+    const formData = new FormData()
+    formData.set('expense[status]', 'submitted')
+
+    fetch(`/api/report/${this.state.item}`, ({
+      method: 'PUT',
+      body: formData,
+      contentType: false,
+      processData: false,
+    }))
+    .then(handleErrors)
+    .catch((error) => {
+    console.log('Error:', error);
+    });
+    alert("Submitted successfully!")
+    window.location.reload(false)
   }
 
   handleDeleteItem = () => {

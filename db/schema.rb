@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_15_084419) do
+ActiveRecord::Schema.define(version: 2020_06_22_083519) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 2020_06_15_084419) do
     t.integer "split"
     t.string "payment_method"
     t.string "note"
-    t.string "status"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 

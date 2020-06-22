@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     put     '/expenses/:id'         => 'expenses#update'
     delete  '/expenses/:id'         => 'expenses#destroy'
     get     '/authenticated'        => 'sessions#authenticated'
+    put     '/report/:id'           => 'expenses#update_status'
 
     # USERS
     post '/users'         => 'users#create'

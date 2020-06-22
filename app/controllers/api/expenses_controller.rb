@@ -38,6 +38,20 @@ module Api
 
     end
 
+    def update_status
+      expense = Expense.find_by(id: params[:id])
+      expense.status = 'submitted'
+      
+      if expense.save
+        
+        render json: expense
+        #render 'api/edit/:id', status: :ok
+      else
+        render json: { success: false }, status: :bad_request
+      end
+
+    end
+
     def destroy
       token = cookies.signed[:travex_session_token]
       session = Session.find_by(token: token)
@@ -62,7 +76,7 @@ module Api
     private
 
    def expense_params
-     params.require(:expense).permit(:date, :merchant, :location, :amount, :split, :category, :payment_method, :note, :status, :image)
+     params.require(:expense).permit(:date, :merchant, :location, :amount, :split, :category, :payment_method, :note, :image)
    end
   end
 end

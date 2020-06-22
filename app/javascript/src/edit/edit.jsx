@@ -97,7 +97,8 @@ class Edit extends React.Component {
   renderForm() {
     const sorted = cities.sort((a,b) => (a.city > b.city) ? 1 : ((b.city > a.city) ? -1 : 0)); 
     const { expenses } = this.state
-    const { id, location, date, category, merchant, split, amount, payment_method, note, image } = expenses
+    const { id, location, date, category, merchant, split, amount, payment_method, note, image, status } = expenses
+
     let merchantEdit =  this.state.editable ? <input ref={(input) => this.merchantInput = input} name="merchant" className="input-form" type="text" defaultValue={merchant} onChange={this.handleForm} /> : <p className="input-text">{merchant}</p>
     let dateEdit =  this.state.editable ? <input ref={(input) => this.dateInput = input} name="date" className="input-form" type="date" defaultValue={date} onChange={this.handleForm} /> : <p className="input-text">{date}</p> 
     let locationEdit =  this.state.editable ? <select className="category-options" id="locationID" name="location" defaultValue={location} onChange={this.handleForm} ref={(input) => this.locationInput = input}>
@@ -168,8 +169,8 @@ class Edit extends React.Component {
                 {noteEdit}
               </div>
               <div className="text-center">
-               {this.state.editable ? <button className="button-form green mr-5 pl-3 pr-3" type="submit" onClick={this.handleUpdate}>Submit</button> :  <button className="button-form green mr-5 pl-3 pr-3" onClick={this.handleEdit}>Edit</button>}
-                <button onClick={this.handleCancel} className="button-form red" type="button">Cancel</button>
+                {status == 'active' || status == 'rejected' ? [(this.state.editable ? <button className="button-form green mr-5 pl-3 pr-3" type="submit" onClick={this.handleUpdate}>Submit</button> : <button className="button-form green mr-5 pl-3 pr-3" onClick={this.handleEdit}>Edit</button>)] : <p className="text-left">Expense {status}</p>}
+                {status == 'active' || status == 'rejected' ? <button onClick={this.handleCancel} className="button-form red" type="button">Cancel</button> : null}
               </div>
             </div>
             <div className="col-lg-4 col-md-12">
@@ -184,7 +185,8 @@ class Edit extends React.Component {
           </div>
         </form>
       )
-    } 
+    }
+
   render() {
     return (
       <Layout >

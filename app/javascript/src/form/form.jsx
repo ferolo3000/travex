@@ -20,7 +20,6 @@ class Form extends React.Component {
       category: '',
       payment_method: '',
       note: '',
-      status: 'Active'
     }
     
     this.handleChange = this.handleChange.bind(this)
@@ -88,7 +87,6 @@ class Form extends React.Component {
       formData.append('expense[category]', this.categoryInput.value)
       formData.append('expense[payment_method]', this.payment_methodInput.value)
       formData.append('expense[note]', this.noteInput.value)
-      formData.append('expense[status]', 'Active')
 
     fetch('/api/expenses', safeCredentialsForm({
       method: 'POST',

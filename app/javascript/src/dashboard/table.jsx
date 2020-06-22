@@ -28,7 +28,7 @@ class Table extends React.Component {
     const size = 5
     const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date))
     return sorted.slice(0, size).map((expense, index) => {
-       const { id, location, date, category, amount, payment_method } = expense 
+       const { id, location, date, category, amount, payment_method, status } = expense 
        return (
           <tr key={id}>
              <td>{date}</td>
@@ -36,6 +36,7 @@ class Table extends React.Component {
              <td><a href={`/expenses/${id}`}>{category}</a></td>
              <td className="amount">{amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
              <td>{payment_method}</td>
+             <td>{status}</td>
           </tr>
        )
     })
