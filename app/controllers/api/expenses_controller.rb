@@ -19,6 +19,14 @@ module Api
       render 'api/expenses/index', status: :ok
     end
 
+    def index_all
+      @data = Expense.joins(:user)
+
+      #render json: { expenses: @trips  }
+      #@expenses = Expense.all
+      #render 'api/expenses/index_all', status: :ok
+    end
+
     def show
       @expense = Expense.find_by(id: params[:id])
       render 'api/expenses/show', status: :ok

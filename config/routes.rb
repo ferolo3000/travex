@@ -8,13 +8,15 @@ Rails.application.routes.draw do
   get '/report'           => 'static_pages#report'   
   get '/receipts'         => 'static_pages#receipts' 
   get '/expenses/:id'     => 'static_pages#edit'
+  get '/admin'            => 'static_pages#admin'
 
   namespace :api do
 
     resources :users, only: [:create]
     resources :sessions, only: [:create, :destroy]
-    resources :expenses, only: [:index, :create, :show, :delete, :update]
+    resources :expenses, only: [:index, :create, :show, :delete, :update, :index_all]
 
+    get     '/admin'                => 'expenses#index_all'
     get     '/:user_id/expenses'    => 'expenses#index'
     post    '/expenses'             => 'expenses#create'
     put     '/expenses/:id'         => 'expenses#update'

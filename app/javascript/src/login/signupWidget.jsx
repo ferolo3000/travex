@@ -108,7 +108,7 @@ class SignupWidget extends React.Component {
             <select value={this.state.role} name="role" onChange={this.handleChange} required>
               <option>Role</option>
               <option value="user">User</option>
-              <option value="aprprover">Approver</option>
+              <option value="approver">Approver</option>
             </select>
           </label>
           <label className="mb-3">

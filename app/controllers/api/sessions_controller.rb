@@ -36,5 +36,17 @@ module Api
         render json: { success: true }, status: :ok
       end
     end
+
+    def is_user?
+      @user.role == 'user'
+    end
+
+    def redirect_after_sign_in
+      if current_user.is_user?
+        redirect_to '/dashboard'
+      else
+        redirect_to '/admin'
+      end
+    end
   end
 end

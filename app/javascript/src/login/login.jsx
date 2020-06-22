@@ -10,17 +10,19 @@ class Login extends React.Component {
   state = {
     authenticated: false,
     show_login: true,
+    role: ''
   }
 
-  componentDidMount() {
+  /*componentDidMount() {
     fetch('/api/authenticated')
       .then(handleErrors)
       .then(data => {
         this.setState({
           authenticated: data.authenticated,
+          role: data.role
         })
       })
-  }
+  }*/
 
   toggle = () => {
     this.setState({
@@ -29,22 +31,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { authenticated, show_login } = this.state;
-   /* if (authenticated) {
-      return (
-          <div className="container">
-            <div className="row">
-              <div className="col-12 col-md-9 col-lg-6 mx-auto my-4">
-                <div className="border p-4 login-card">
-                  <p className="mb-0">You are already logged in 🙂</p>
-                    <a className="nav-link" href="/dashboard">Home</a>
-                </div>
-              </div>
-            </div>
-          </div>
-      );
-    };*/
-    
+    const { show_login } = this.state;
     return (
       <React.Fragment>
       <nav className="navbar navbar-light bg-light">
