@@ -59,7 +59,7 @@ class Login extends React.Component {
           <h1 className="title mt-1 mb-4 text-center">An App your team will love</h1>
             <div className="card-summarys mt-5 mb-5">
               <div className="row">
-                <div className="col-3 col-md-3">
+                <div className="col-lg-3 col-sm-5">
                   <div className="card-summary icon-list p-2">
                     <div className="column-icon-list">
                       <img className="card-summary-icon" src="https://img.icons8.com/nolan/64/time-machine.png" alt="expense management solution" title="" />
@@ -67,12 +67,12 @@ class Login extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-6 col-md-6">
+                <div className="col-lg-6 col-sm-2">
                   <div className="circle">
                     <img className="img responsive mb-3" src="https://travexapp.s3.amazonaws.com/ipad-img-screen.png" />
                   </div>
                 </div>
-                <div className="col-3 col-md-3">
+                <div className="col-lg-3 col-sm-5">
                   <div className="card-summary icon-list p-2">
                     <div className="column-icon-list">
                       <img className="card-summary-icon" src="https://img.icons8.com/nolan/64/paper.png" alt="expense management" title="" />
@@ -89,12 +89,13 @@ class Login extends React.Component {
               </div>
             </div>
             <div className="mt-5 about">
-              <div className="mt-5 p-2">About me
-                <p>Hi, I’m Fernanda. Before getting into coding, I completed a Bachelor’s degree in business administration and have worked several years with data analysis. However, I always felt that I was not on the right path until I started writing my first code. From that time, I knew what was in my future, why I started different modules to gather more knowledge about coding and finally I signed up for a bootcamp at <a href="www.altcademy.com" target="_blank">Altcademy</a>. My dream is to work as a software developer, building software for businesses.</p>
-                <p>This is my Capstone Project, any feedback would be appreciated</p>
+              <div className="mt-5 p-2">
+              <h3 className="about-txt">About me</h3>
+                <p className="about-txt">Hi, I’m Fernanda. Before getting into coding, I completed a Bachelor’s degree in business administration and have worked several years with data analysis. However, I always felt that I was not on the right path until I started writing my first code. From that time, I knew what was in my future, why I started different modules to gather more knowledge about coding and finally I signed up for a bootcamp at <a href="www.altcademy.com" target="_blank">Altcademy</a>. My dream is to work as a software developer, building software for businesses.</p>
+                <p className="about-txt">This is my Capstone Project, any feedback would be appreciated</p>
               </div>
               <div className="p-2">
-                <p>Get in touch:</p>
+                <p  className="about-txt">Get in touch:</p>
                 <a href="https://github.com/ferolo3000/travex" target="_blank" className="navbar-brand mb-0 h1 text-right"><img src="https://img.icons8.com/ios-glyphs/30/000000/github.png" /></a>
                 <a href="https://www.linkedin.com/in/fernandaromerolo/" target="_blank" className="navbar-brand mb-0 h1 text-right"><img src="https://img.icons8.com/android/24/000000/linkedin.png"/></a>
                 <a href="https://fernanda-romero.netlify.app/" target="_blank" className="navbar-brand mb-0 h1 text-right"><img src="https://img.icons8.com/windows/32/000000/internet.png"/></a>
