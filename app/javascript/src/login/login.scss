@@ -47,7 +47,7 @@ form {
   text-align: center;
 }
 
-button, input {
+button, input, select, option {
   border: 0;
   outline: 0;
   font-size: $ruler;
@@ -63,7 +63,11 @@ label {
   width: 100%;
 }
 
-input {
+#role {
+  color: #757575;
+}
+
+input, select, option {
   margin-right: $ruler/2;
   box-shadow:  inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
   width: 100%;

@@ -60,7 +60,7 @@ class Report extends React.Component {
     const formData = new FormData()
     formData.set('expense[status]', 'submitted')
 
-    fetch(`/api/report/${this.state.item}`, ({
+    fetch(`/api/submitted/${this.state.item}`, ({
       method: 'PUT',
       body: formData,
       contentType: false,
@@ -233,6 +233,7 @@ class Report extends React.Component {
                   <th scope="col">Amount</th>
                   <th scope="col">Payment Method</th>
                   <th scope="col">Note</th>
+                  <th scope="col">Status</th>
                   <th scope="col"></th>
                 </tr>
               </thead>

@@ -46,18 +46,40 @@ module Api
 
     end
 
-    def update_status
+    def update_submitted
       expense = Expense.find_by(id: params[:id])
       expense.status = 'submitted'
       
-      if expense.save
-        
+      if expense.save 
         render json: expense
         #render 'api/edit/:id', status: :ok
       else
         render json: { success: false }, status: :bad_request
       end
+    end
 
+    def update_approved
+      expense = Expense.find_by(id: params[:id])
+      expense.status = 'approved'
+      
+      if expense.save        
+        render json: expense
+        #render 'api/edit/:id', status: :ok
+      else
+        render json: { success: false }, status: :bad_request
+      end
+    end
+
+    def update_rejected
+      expense = Expense.find_by(id: params[:id])
+      expense.status = 'rejected'
+      
+      if expense.save     
+        render json: expense
+        #render 'api/edit/:id', status: :ok
+      else
+        render json: { success: false }, status: :bad_request
+      end
     end
 
     def destroy

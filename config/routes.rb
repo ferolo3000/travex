@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   namespace :api do
 
     resources :users, only: [:create]
-    resources :sessions, only: [:create, :destroy]
+    resources :sessions, only: [:create, :destroy, :redirect_after_sign_in]
     resources :expenses, only: [:index, :create, :show, :delete, :update, :index_all]
 
     get     '/admin'                => 'expenses#index_all'
@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     put     '/expenses/:id'         => 'expenses#update'
     delete  '/expenses/:id'         => 'expenses#destroy'
     get     '/authenticated'        => 'sessions#authenticated'
-    put     '/report/:id'           => 'expenses#update_status'
+    put     '/submitted/:id'        => 'expenses#update_submitted'
+    put     '/approved/:id'         => 'expenses#update_approved'
+    put     '/rejected/:id'         => 'expenses#update_rejected'
 
     # USERS
     post '/users'         => 'users#create'

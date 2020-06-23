@@ -41,8 +41,10 @@ class LoginWidget extends React.Component {
   }))
   .then(handleErrors)
   .then(data => {
-    if (data.success) {
+    if (data.success && data.role == 'user') {
       window.location = "/dashboard";
+    } else if (data.success && data.role == 'approver') {
+      window.location = "/admin";
     }
     console.log(data);
   })

@@ -3,6 +3,11 @@ import Message from "../report/message"
 
 import './dashboard.scss';
 
+const grey = '#BABECC';
+const green = '#50d890';
+const red = '#ef5675';
+const orange = '#ffa600';
+
 class Table extends React.Component {
   constructor(props) {
     super(props)
@@ -36,7 +41,18 @@ class Table extends React.Component {
              <td><a href={`/expenses/${id}`}>{category}</a></td>
              <td className="amount">{amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
              <td>{payment_method}</td>
-             <td>{status}</td>
+             {
+               (() => {
+                  if (status === 'approved')
+                     return <td style={{color: green, fontStyle: 'italic'}}>{status}</td>
+                  if (status === 'rejected')
+                     return <td style={{color: red, fontStyle: 'italic'}}>{status}</td>
+                  if (status === 'submitted')
+                     return <td style={{color: orange, fontStyle: 'italic'}}>{status}</td>   
+                  else 
+                     return <td style={{color: grey, fontStyle: 'italic'}}>{status}</td>
+               })()
+            }
           </tr>
        )
     })
@@ -53,6 +69,7 @@ class Table extends React.Component {
                 <th scope="col">Category</th>
                 <th scope="col">Amount</th>
                 <th scope="col">Payment</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
