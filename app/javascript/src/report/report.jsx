@@ -230,6 +230,7 @@ class Report extends React.Component {
                   <th scope="col">Location</th>
                   <th scope="col">Category</th>
                   <th scope="col">Merchant</th>
+                  <th scope="col">Guests</th>
                   <th scope="col">Amount</th>
                   <th scope="col">Payment Method</th>
                   <th scope="col">Note</th>

@@ -152,7 +152,7 @@ class Form extends React.Component {
                   <input className="input-form" type="number" min={0} step={0.01} name="amount" value={this.state.amount} onChange={this.handleForm} ref={(input) => this.amountInput = input}  required />
                 </div>
                 <div className="form-group col-md-2">
-                  <label className="label">Split</label>
+                  <label className="label">Guests</label>
                   <input className="input-form" type="number" min={1} name="split" value={this.state.split} onChange={this.handleForm} ref={(input) => this.splitInput = input}  required />
                 </div>
               </div>

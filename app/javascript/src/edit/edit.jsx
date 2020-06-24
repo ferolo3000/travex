@@ -150,7 +150,7 @@ class Edit extends React.Component {
                   {amountEdit}
                 </div>
                 <div className="form-group col-md-2">
-                  <label className="label">Split</label>
+                  <label className="label">Guests</label>
                   {splitEdit}
                 </div>
               </div>

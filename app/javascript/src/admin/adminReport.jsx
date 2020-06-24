@@ -230,12 +230,12 @@ class Admin extends React.Component {
             <table className="table table-hover d-block d-md-table">
               <thead>
                 <tr>
-                  <th scope="col"><input type="checkbox" onClick={this.handleAllChecked}  value="checkedall" /></th>
+                  <th scope="col"></th>
                   <th scope="col">Date</th>
                   <th scope="col">User</th>
                   <th scope="col">Location</th>
                   <th scope="col">Category</th>
-                  <th scope="col">Split</th>
+                  <th scope="col">Guests</th>
                   <th scope="col">Merchant</th>
                   <th scope="col">Amount</th>
                   <th scope="col">Payment Method</th>
