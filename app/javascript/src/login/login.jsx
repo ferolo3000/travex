@@ -139,7 +139,7 @@ class Login extends React.Component {
             <h3 className="about-txt ml-3">About me</h3>
             <p className="about-txt ml-3">Hi, I’m Fernanda.</p> 
             <p className="about-txt ml-3">Before getting into coding, I completed a Bachelor’s degree in business administration and have worked several years with data analysis. However, I always felt that I was not on the right path until I
-              started writing my first code. From that time, I knew what was in my future, why I started different modules to gather more knowledge about coding and finally I signed up for a bootcamp at <a href="www.altcademy.com" target="_blank">Altcademy</a>. My dream is to work as a software developer building software for businesses.</p>
+              started writing my first code. From that time, I knew what was in my future, why I started different modules to gather more knowledge about coding and finally I signed up for a bootcamp at <span style={{fontWeight: 'bold'}}>Altcademy</span>. My dream is to work as a software developer building software for businesses.</p>
             <p className="about-txt ml-3">This is my Capstone Project, any feedback would be appreciated.</p>
           </div>
           <div className="p-2 ml-3">
