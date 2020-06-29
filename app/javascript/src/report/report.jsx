@@ -116,7 +116,7 @@ class Report extends React.Component {
   }
 
   render() {
-
+    console.log(this.state.item)
     const { expenses, currentPage, itemPerPage, filterCategory, filterPayment } = this.state;
 
 //----------------------Start Pagination-----------------------//

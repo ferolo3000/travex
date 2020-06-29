@@ -69,26 +69,8 @@ class Admin extends React.Component {
     .catch((error) => {
     console.log('Error:', error);
     });
-    alert("Submitted successfully!")
+    alert("Status has been updated!")
     window.location.reload(false)
-  }
-
-  handleDeleteItem = () => {
-    fetch(`/api/expenses/${this.state.item}`, safeCredentials({
-      method: 'DELETE',
-    }))
-      .then(response => {
-        const itemIndex = this.state.expenses.findIndex(x => x.id === this.state.item)
-        const updateExpenses = update(this.state.expenses, {
-          $splice: [[itemIndex, 0]]
-        })
-        this.setState({
-          expenses: updateExpenses
-        })
-        alert("deleted successfully!")
-      })
-      .catch(error => console.log(error))
-      window.location.reload(false)
   }
 
   handleClick(event) {
@@ -173,7 +155,7 @@ class Admin extends React.Component {
       <Layout>
       <div className="container">
         <div className="text-center mt-3">
-            <h2 className="title mb-2">Expenses List</h2>
+            <h2 className="title mb-2">Approver Expense List</h2>
         </div>
         <div className="row">
           <div className="form-group col-lg-3 col-md-3">
