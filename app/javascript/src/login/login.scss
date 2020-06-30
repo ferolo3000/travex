@@ -189,6 +189,10 @@ button {
   padding: 50px;
 }
 
+.box-users {
+  background-color: $color-bg;
+}
+
 .responsive {
   max-width: 50%;
   height: auto;
@@ -199,20 +203,16 @@ button {
   border-radius: 5px;
 }
 
-#egg {
-  display: block;
-  width: 126px;
-  height: 180px;
-  background-color: red;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-}
-
 .about {
   margin-top: 100px;
   color: $color-green;
 }
 
 .about-txt {
+  color: $color-blue;
+}
+
+.user {
   color: $color-blue;
 }
 

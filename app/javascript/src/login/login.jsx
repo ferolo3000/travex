@@ -133,7 +133,24 @@ class Login extends React.Component {
             <div className="container mx-auto px-6">
               <h1 className="text-center font-bold mb-2 text-white">Travex is the perfect tool for anyone who needs to keep track of receipts and expense management</h1>
             </div>
-        </div>   
+        </div>
+        <div className="box-users p-3">
+              <div className="text-center">
+                <h4 className="user">Try Out</h4>
+              </div>
+            <div className="row">
+              <div className="col-md-6 text-center user">
+                <span className="text-bold" style={{ fontWeight: 'bold' }}>As User</span><br/>
+                username: juan<br/>
+                password: admin456<br/>
+              </div>
+              <div className="col-md-6  text-center user">
+              <span className="text-bold" style={{ fontWeight: 'bold' }}>As Approver</span><br/>
+                username: ferolo<br/>
+                password: admin123<br/>
+              </div>
+            </div>
+        </div>    
         <div className="mt-5 about">
           <div className="mt-5 p-2">
             <h3 className="about-txt ml-3">About me</h3>
