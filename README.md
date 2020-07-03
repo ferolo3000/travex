@@ -20,3 +20,20 @@ Full-Stack Project
 ## Deploy
 - Heroku
 - AWS
+
+
+# Getting started
+1. Clone this repository
+
+ ```
+ https://github.com/ferolo3000/travex.git 
+ ```
+ 2. Update gems
+ 
+  ```
+  bundle install
+   ```
+3. Migrate Database in console
+ ```
+ rails db:migrate
+  ```
